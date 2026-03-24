@@ -1,0 +1,75 @@
+@prefix enpkg: <https://enpkg.commons-lab.org/kg/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+enpkg:LCMSFeatureIndex a rdfs:Class ;
+    rdfs:label "LCMS Feature Index" ;
+    rdfs:comment "A class representing an index of LCMS features." .
+
+enpkg:in_pmas_bin a rdf:Property ;
+    rdfs:label "in parent mass bin" ;
+    rdfs:domain enpkg:LCMSFeature   ;
+    rdfs:range enpkg:ParentMassBin  .
+
+enpkg:in_reti_bin a rdf:Property ;
+    rdfs:label "in retention time bin" ;
+    rdfs:domain enpkg:LCMSFeature      ;
+    rdfs:range enpkg:RetentionTimeBin  .
+
+enpkg:in_feat_bin a rdf:Property ;
+    rdfs:label "in feature bin"     ;
+    rdfs:domain enpkg:LCMSFeature   ;
+    rdfs:range enpkg:LCMSFeatureBin .
+
+enpkg:ParentMassBin a rdfs:Class ;
+    rdfs:label "Binarized parent mass" .    
+
+enpkg:RetentionTimeBin a rdfs:Class ;
+    rdfs:label "Binarized retention time" .
+
+enpkg:LCMSFeatureBin a rdfs:Class ;
+    rdfs:label "Binarized LCMS feature"  .
+
+enpkg:has_normalized_intensity_A a rdf:Property ;
+    rdfs:label "has normalized intensity A" ;
+    rdfs:domain enpkg:LCMSFeature ;
+    rdfs:range xsd:float .
+
+enpkg:in_peak_bin a rdf:Property ;
+    rdfs:label "in peak bin" ;
+    rdfs:domain enpkg:ion ;
+    rdfs:range enpkg:PeakBin .
+
+enpkg:in_loss_bin a rdf:Property ;
+    rdfs:label "in loss bin" ;
+    rdfs:domain enpkg:ion ;
+    rdfs:range enpkg:PeakBin .
+
+enpkg:has_normalized_intensity_A a rdf:Property ;
+    rdfs:label "has normalized intensity A" ;
+    rdfs:domain enpkg:LCMSFeature ;
+    rdfs:range xsd:float .
+
+enpkg:PeakBin a rdfs:Class ;
+    rdfs:label "Peak Bin" ;
+    rdfs:comment "A class representing binarized peaks." .
+
+enpkg:LossBin a rdfs:Class ;
+    rdfs:label "Loss Bin" ;
+    rdfs:comment "A class representing binarized losses." . 
+
+enpkg:has_sum_normalized_intensity_A a rdf:Property ;
+    rdfs:label "has sum normalized intensity A" ;
+    rdfs:domain enpkg:LCMSFeature ;
+    rdfs:range xsd:float .
+
+enpkg:has_count_peak a rdf:Property ;
+    rdfs:label "has count peak" ;
+    rdfs:domain enpkg:LCMSFeature ;
+    rdfs:range xsd:int .
+
+enpkg:has_representative_feature a rdf:Property ;
+    rdfs:label "has representative feature" ;
+    rdfs:domain enpkg:LCMSFeatureBin ;
+    rdfs:range enpkg:LCMSFeature .

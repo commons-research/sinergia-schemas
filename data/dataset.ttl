@@ -1,0 +1,65 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>   .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#>         .
+@prefix owl:     <http://www.w3.org/2002/07/owl#>                .
+@prefix pmid:    <http://rdf.ncbi.nlm.nih.gov/pubmed/>           .      
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#>          .
+@prefix jlw:     <https://www.sinergiawolfender.org/jlw/>      .
+
+jlw:PlantPartScheme a skos:ConceptScheme ;
+	rdfs:label 'Plant part scheme' ;
+	rdfs:comment "A hierachical organization of plant parts adapted from the nomenclature found in the Pierre Fabre phytothèque. It is designed to capture most of the original annotations in a not-too-big hierarchy. A few rarely used or ambiguous designations were not taken into account (they are still visible in the comments of PfCode entries). Nota Bene: this scheme includes both plant organs sensu stricto (e.g. 'leaf' or 'flower') and practical categories with no botanical meaning (e.g. 'woody stem')" ;
+	skos:hasTopConcept jlw:whole_plant .
+
+jlw:SimplifiedTaxonomyScheme a skos:ConceptScheme ;
+	rdfs:label "A simplified but balanced taxonomy" ;
+	rdfs:comment "A simplified taxonomy derived from Open Tree of Life ver. 3.3. It is a balanced tree (all branches have the same length) and therefore contains a few placeholder nodes for the sake of balancing lineages. PF codes are now linked with nodes at the species rank. Some infra-specific assignment (e.g. cultivar) were remapped on the upper species. In addition, a few 'Genus sp.' nodes were created for PF codes originally assignement at the genus rank. When feasible link to wikidata taxonomy are also provided";
+	skos:hasTopConcept jlw:taxon_ott_805080 . # i.e. life
+
+##### PFcodeCollection
+
+jlw:PFCodeFullCollection a jlw:PFcodeCollection ;
+     rdfs:label "All PF samples"     ;
+     rdfs:comment "The full collection of PF codes, most of them have not been screened to date." .
+
+jlw:PFCode_1600_PFcode_collection a jlw:PFcodeCollection ;
+	 rdfs:label "1600 PFcodes"    ;
+	 rdfs:comment "The collection of 1600 PF codes, which were originally screened and described in  https://doi.org/10.1093/gigascience/giac124" ;
+	 jlw:has_pmid_xref pmid:36649739 .
+
+jlw:chemo_diverse_PFcode_collection a jlw:PFcodeCollection ;
+	 rdfs:label "Chemo-diverse PFcode collection"    ;
+	 rdfs:comment "First selection of plant made by the SIB based on taxo/chemo-diversity (Genetic algorithm?). 23 Plants extracted directly (and only with Ethyle acetate)" ;
+	 skos:example "jlw:V112049" . 
+
+jlw:analogs_Hits_HD_PBL_PFcode_collection a jlw:PFcodeCollection ;
+	 rdfs:label "Analogs Hits HD-PBL PFcode collection"    ;
+	 rdfs:comment "7 plants that were selected on the basis of annotations matching structures of the 37 top Hit compounds in the HD-PBL List ( https://doi.org/10.3389/fmicb.2020.00266 ). One plant was extensively studied (V114260 – Cananga brandisiana – subterranean parts) and an article within the Sinergia is about to get published on this ( https://doi.org/10.3389/fntpr.2023.1279761 )." . 
+
+jlw:analogs_Hits_Wolfrum_PFcode_collection a jlw:PFcodeCollection ;
+	 rdfs:label "Analogs Hits Wolfrum PFcode collection"    ;
+	 rdfs:comment "4 plants that were selected on the basis of annotations matching structures of the 18 top Hit compounds in the Wolfrum Lab assays." . 
+
+# jlw:extracts_profiled_for_PFcode_collection a jlw:PFcodeCollection ;
+# 	 rdfs:label "Extracts profiled for PF"    ;
+# 	 rdfs:comment "" . 
+
+jlw:expert_PFcode_collection a jlw:PFcodeCollection ;
+	 rdfs:label "Expert PFcode collection"    ;
+	 rdfs:comment "Selection of 40 plants based on the best candidates in terms of Wolfrum Lab assays (LD, Autophagy, PI) as well as Inventa results. Homemade algorithm by LFX and OK in October 2021" . 
+
+jlw:SMART_PFcode_collection a jlw:PFcodeCollection ;
+	 rdfs:label "SMART PFcode collection"    ;
+	 rdfs:comment "Selection made by the SIB, where 177 plants could be received from Pierre Fabre, were extracted (Hexane + Ethyle acetate + methanol extracts). Some Ceasalpiniaceae + Goniothalamus plants were ordered and worked alongside the SMART selection and were included in the workflow/plates that were sent for biology testing, despite not being part of the SMART selection (192 plants in total)." . 
+
+jlw:taxodiverse_PFcode_collection a jlw:PFcodeCollection ;
+	 rdfs:label "Taxodiverse PFcode collection"    ;
+	 rdfs:comment "Selection made by the SIB, where we used extracts available in tubes at the Wolfender lab (without new extraction from the plants). This set was meant to maximise the taxonomical diversity of what can be found within the entire 15000+ Pierre Fabre Library, but also excluding (?) the 1600 set that was already used to generate the SMART Library. 192 out of 200 plants selected had corresponding extracts (8 were missing)." . 
+
+jlw:Combretaceae_PFcode_collection a jlw:PFcodeCollection ;
+	 rdfs:label "Combretaceae PFcode collection"    ;
+	 rdfs:comment "Selection of 38 Combretaceae plants within the whole Pierre Fabre Library. Based on previous knowledge of interesting anti-mycobacterial activity found in plants of this family." . 
+
+jlw:Celastraceae_PFcode_collection a jlw:PFcodeCollection ;
+	 rdfs:label "Celastraceae PFcode collection"    ;
+	 rdfs:comment "All the Celastraceae in the 17k samples, analyzed by Luis during his PhD for the developement of INVENTA. Collection described in https://doi.org/10.26434/chemrxiv-2023-93gm5" . 
+

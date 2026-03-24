@@ -1,0 +1,478 @@
+@prefix	rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#>	.
+@prefix	rdfs:	<http://www.w3.org/2000/01/rdf-schema#>	.
+@prefix	xsd:	<http://www.w3.org/2001/XMLSchema#>	.
+@prefix	foaf:	<http://xmlns.com/foaf/0.1/>	.
+@prefix	skos:	<http://www.w3.org/2004/02/skos/core#>	.
+@prefix	jlw:	<https://www.sinergiawolfender.org/jlw/>	.
+@prefix	enpkg:	<https://enpkg.commons-lab.org/kg/>	.
+@prefix	ott:	<https://tree.opentreeoflife.org/taxonomy/browse?id=>	.
+@prefix	gnps:	<https://gnps.ucsd.edu/ProteoSAFe/gnpslibraryspectrum.jsp?SpectrumID=>	.
+@prefix	doi:	<https://doi.org/>	.
+@prefix	prov:	<http://www.w3.org/ns/prov#/>	.
+@prefix	dcat:	<http://www.w3.org/ns/dcat#>	.
+@prefix	dcterms:	<http://purl.org/dc/terms/>	.
+jlw:assay_batch_CW_JUN2022	a	jlw:AssayBatch	;
+	dcat:downloadURL	"sinergiawolfender/groups/sinergiawolfender/groups/wolfrum_lab_data"	;
+	dcterms:license	"Unpublished"	;
+	jlw:has_operator	jlw:Chunyan_Wu	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Autophagy_LD_staining_method_Wolfrum_lab.docx"	;
+	prov:generatedAtTime	"2022-06"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises autophagy induction and repression screening results, as well as lipid droplet (LD)-related parameter assessments and cytotoxicity evaluations of the 1,600 NEs from the library, obtained through cell-based assays conducted by the Wolfrum lab."	;
+	rdfs:label	"CW assay batch JUN2022"	.
+jlw:assay_batch_CW_MAY2023	a	jlw:AssayBatch	;
+	dcat:downloadURL	"sinergiawolfender/groups/sinergiawolfender/groups/wolfrum_lab_data/MAY2023"	;
+	dcterms:license	"Unpublished"	;
+	jlw:has_operator	jlw:Chunyan_Wu	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Autophagy_LD_staining_method_Wolfrum_lab.docx"	;
+	prov:generatedAtTime	"2023-05"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises autophagy induction and repression screening results, as well as lipid droplet (LD)-related parameter assessments and cytotoxicity evaluations of the 1,600 NEs from the library, obtained through cell-based assays conducted by the Wolfrum lab."	;
+	rdfs:label	"CW assay batch MAY2023"	.
+jlw:assay_batch_INVENTA_1600_unaligned	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/PF1600_Inventa_POS_Unaligned.tsv"^^xsd:anyURI	;
+	dcterms:license	"Unpublished"	;
+	jlw:has_operator	jlw:Luis-Manuel_Quiros-Guerrero	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Luis_Q_Chapter_4"	;
+	prov:generated	"10.13097/archive-ouverte/unige:171177"	;
+	prov:generatedAtTime	"2023-01"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset contains Inventa-generated results from untargeted mass spectrometry data of the Celastraceae selection within the Pierre Fabre Library, aiming to identify structurally novel compounds. These results were generated with the unaligned version of Inventa."	;
+	rdfs:label	"Inventa PF1600 unaligned analysis results"	.
+jlw:assay_batch_INVENTA_Celastraceae_aligned	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/Celastraceae_Inventa_POS_Aligned.tsv"^^xsd:anyURI	;
+	dcterms:license	"https://creativecommons.org/licenses/by/4.0/"	;
+	jlw:has_operator	jlw:Luis-Manuel_Quiros-Guerrero	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"doi:10.3389/fmolb.2022.1028334"	;
+	prov:generated	"doi:10.3389/fmolb.2022.1028334"	;
+	prov:generatedAtTime	"2022-01"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset contains Inventa-generated results from untargeted mass spectrometry data of the Celastraceae selection within the Pierre Fabre Library, aiming to identify structurally novel compounds. These results were generated with the aligned version of Inventa."	;
+	rdfs:label	"Inventa Celastraceae aligned analysis results"	.
+jlw:assay_batch_INVENTA_Celastraceae_unaligned	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/Celastraceae_Inventa_POS_Unaligned.tsv"^^xsd:anyURI	;
+	dcterms:license	"Unpublished"	;
+	jlw:has_operator	jlw:Luis-Manuel_Quiros-Guerrero	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Luis_Q_Chapter_4"	;
+	prov:generated	"10.13097/archive-ouverte/unige:171177"	;
+	prov:generatedAtTime	"2023-01"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset contains Inventa-generated results from untargeted mass spectrometry data of the Celastraceae selection within the Pierre Fabre Library, aiming to identify structurally novel compounds. These results were generated with the unaligned version of Inventa."	;
+	rdfs:label	"Inventa Celastraceae unaligned analysis results"	.
+jlw:assay_batch_MASSIVE_MSV000087728_neg	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C59J97>	;
+	dcterms:license	"https://creativecommons.org/publicdomain/zero/1.0/"	;
+	jlw:has_operator	jlw:Pierre-Marie_Allard	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"doi:10.1093/gigascience/giac124"	;
+	prov:generated	"doi:10.1093/gigascience/giac124"	;
+	prov:generatedAtTime	"2017-01"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 1,600 samples within the Pierre Fabre Library described in doi:10.1093/gigascience/giac124. This selection represents approximately 10% of the NEs prepared in the full PFL library. Within the Streptophyta phylum, the dataset covers ~64% of known orders and ~30% of all known botanical families."	;
+	rdfs:label	"LCMS of PF1600 collection NEG"	.
+jlw:assay_batch_MASSIVE_MSV000087728_pos	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C59J97>	;
+	dcterms:license	"https://creativecommons.org/publicdomain/zero/1.0/"	;
+	jlw:has_operator	jlw:Pierre-Marie_Allard	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"doi:10.1093/gigascience/giac124"	;
+	prov:generated	"doi:10.1093/gigascience/giac124"	;
+	prov:generatedAtTime	"2017-01"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 1,600 samples within the Pierre Fabre Library described in doi:10.1093/gigascience/giac124. This selection represents approximately 10% of the NEs prepared in the full PFL library. Within the Streptophyta phylum, the dataset covers ~64% of known orders and ~30% of all known botanical families."	;
+	rdfs:label	"LCMS of PF1600 collection POS"	.
+jlw:assay_batch_MASSIVE_MSV000087970_neg	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5PJ9N>	;
+	dcterms:license	"https://creativecommons.org/publicdomain/zero/1.0/"	;
+	jlw:has_operator	jlw:Luis-Manuel_Quiros-Guerrero	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"doi:10.1038/s41597-024-03094-6"	;
+	prov:generated	"10.1038/s41597-024-03094-6"	;
+	prov:generatedAtTime	"2020-02"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 36 Celastraceae plants (76 NEs) within the Pierre Fabre Library. The selection was guided by prior knowledge of structurally complex NPs observed in this plant family."	;
+	rdfs:label	"LCMS of Celastraceae collection NEG"	.
+jlw:assay_batch_MASSIVE_MSV000087970_pos	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5PJ9N>	;
+	dcterms:license	"https://creativecommons.org/publicdomain/zero/1.0/"	;
+	jlw:has_operator	jlw:Luis-Manuel_Quiros-Guerrero	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"doi:10.1038/s41597-024-03094-6"	;
+	prov:generated	"10.1038/s41597-024-03094-6"	;
+	prov:generatedAtTime	"2020-02"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 36 Celastraceae plants (76 NEs) within the Pierre Fabre Library. The selection was guided by prior knowledge of structurally complex NPs observed in this plant family."	;
+	rdfs:label	"LCMS of Celastraceae collection POS"	.
+jlw:assay_batch_MASSIVE_MSV000096326_neg	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5Z892S7W>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_4"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2022-07"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 38 Combretaceae plants within the Pierre Fabre Library. The selection was guided by prior knowledge of anti-mycobacterial activity observed in this plant family."	;
+	rdfs:label	"LCMS of Combretaceae collection NEG"	.
+jlw:assay_batch_MASSIVE_MSV000096326_pos	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5Z892S7W>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_4"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2022-07"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 38 Combretaceae plants within the Pierre Fabre Library. The selection was guided by prior knowledge of anti-mycobacterial activity observed in this plant family."	;
+	rdfs:label	"LCMS of Combretaceae collection POS"	.
+jlw:assay_batch_MASSIVE_MSV000096328_neg	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5PV6BK2B>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Louis-Felix_Nothias	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_9"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2022-11"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 192 plants within the Pierre Fabre Library. This set was meant to maximise the taxonomical diversity of what can be found within the entire Pierre Fabre Library."	;
+	rdfs:label	"LCMS of Taxodiverse collection NEG"	.
+jlw:assay_batch_MASSIVE_MSV000096328_pos	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5PV6BK2B>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Louis-Felix_Nothias	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_9"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2022-11"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 192 plants within the Pierre Fabre Library. This set was meant to maximise the taxonomical diversity of what can be found within the entire Pierre Fabre Library."	;
+	rdfs:label	"LCMS of Taxodiverse collection POS"	.
+jlw:assay_batch_MASSIVE_MSV000096365_neg	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5HX16315>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_6"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2023-04"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 137 NEs within the PF1600 selection. This set is based on the Hits (anti-infective and pro-metabolic activities) of the first round of screening of the PF1600 selection."	;
+	rdfs:label	"LCMS of Validation List TS collection NEG"	.
+jlw:assay_batch_MASSIVE_MSV000096365_pos	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5HX16315>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_6"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2023-04"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 137 NEs within the PF1600 selection. This set is based on the Hits (anti-infective and pro-metabolic activities) of the first round of screening of the PF1600 selection."	;
+	rdfs:label	"LCMS of Validation List TS collection POS"	.
+jlw:assay_batch_MASSIVE_MSV000096366_neg	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C51Z4251J>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Louis-Felix_Nothias	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_9"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2022-11"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 177 plants within the Pierre Fabre Library. The selection was guided by prior knowledge on cytotoxicity, high activity (autophagy and LD assays), high spectral and taxonomic diversity (MEMO), and chemotaxonomic information derived from the LOTUS knowledge base."	;
+	rdfs:label	"LCMS of Smart collection NEG"	.
+jlw:assay_batch_MASSIVE_MSV000096366_pos	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C51Z4251J>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Louis-Felix_Nothias	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_9"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2022-11"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 177 plants within the Pierre Fabre Library. The selection was guided by prior knowledge on cytotoxicity, high activity (autophagy and LD assays), high spectral and taxonomic diversity (MEMO), and chemotaxonomic information derived from the LOTUS knowledge base."	;
+	rdfs:label	"LCMS of Smart collection POS"	.
+jlw:assay_batch_MASSIVE_MSV000096369_neg	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5NP1WW5H>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_5"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2022-01"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 40 plants within the Pierre Fabre Library. The selection was guided by prior knowledge on the best candidates in terms of Wolfrum Lab assays (LD, Autophagy, PI) as well as Inventa results."	;
+	rdfs:label	"LCMS of Expert collection NEG"	.
+jlw:assay_batch_MASSIVE_MSV000096369_pos	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5NP1WW5H>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_5"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2022-01"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 40 plants within the Pierre Fabre Library. The selection was guided by prior knowledge on the best candidates in terms of Wolfrum Lab assays (LD, Autophagy, PI) as well as Inventa results."	;
+	rdfs:label	"LCMS of Expert collection POS"	.
+jlw:assay_batch_MASSIVE_MSV000096370_neg	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5HX16315>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_6"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2023-05"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data on micro-fractions derived from selected NE of the Validation list TS collection."	;
+	rdfs:label	"LCMS of Validated Hits TS collection NEG"	.
+jlw:assay_batch_MASSIVE_MSV000096370_pos	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5HX16315>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_6"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2023-05"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data on micro-fractions derived from selected NE of the Validation list TS collection."	;
+	rdfs:label	"LCMS of Validated Hits TS collection POS"	.
+jlw:assay_batch_MASSIVE_MSV000096510_neg	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5PV6BK3T>	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"N/A"	;
+	prov:generatedAtTime	"2021-02"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 23 plants within the Pierre Fabre Library. The selection was made by SIB based on taxonomic and chemical diversity (using a genetic algorithm). All plants were extracted exclusively with ethyl acetate."	;
+	rdfs:label	"LCMS of Chemodiverse collection NEG"	.
+jlw:assay_batch_MASSIVE_MSV000096510_pos	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5PV6BK3T>	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"N/A"	;
+	prov:generatedAtTime	"2021-02"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 23 plants within the Pierre Fabre Library. The selection was made by SIB based on taxonomic and chemical diversity (using a genetic algorithm). All plants were extracted exclusively with ethyl acetate."	;
+	rdfs:label	"LCMS of Chemodiverse collection POS"	.
+jlw:assay_batch_MASSIVE_MSV000096521_neg	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C58P5VN4K>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_9"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 135 samples within the Pierre Fabre Library. The selection aimed to increase the profiling of the PFL library with complementary samples of the PF1600 selection."	;
+	rdfs:label	"LCMS of PF tubes collection NEG"	.
+jlw:assay_batch_MASSIVE_MSV000096521_pos	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C58P5VN4K>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_9"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2023-02"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 135 samples within the Pierre Fabre Library. The selection aimed to increase the profiling of the PFL library with complementary samples of the PF1600 selection."	;
+	rdfs:label	"LCMS of PF tubes collection POS"	.
+jlw:assay_batch_MASSIVE_MSV000096522_neg	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C54X54V0T>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_2"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2021-02"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 7 plants within the Pierre Fabre Library. The selection was guided by prior annotation matches to the structures of the 37 top-hit compounds in the HD-PBL List (doi:10.3389/fmicb.2020.00266)."	;
+	rdfs:label	"LCMS of Analogs Hits HDPBL collection NEG"	.
+jlw:assay_batch_MASSIVE_MSV000096522_pos	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C54X54V0T>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_2"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2021-02"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 7 plants within the Pierre Fabre Library. The selection was guided by prior annotation matches to the structures of the 37 top-hit compounds in the HD-PBL List (doi:10.3389/fmicb.2020.00266)."	;
+	rdfs:label	"LCMS of Analogs Hits HDPBL collection POS"	.
+jlw:assay_batch_MASSIVE_MSV000096523_neg	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5154F16S>	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"N/A"	;
+	prov:generatedAtTime	"2021-02"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 4 plants within the Pierre Fabre Library. The selection was guided by prior annotation matches to the structures of the 18 top-hit compounds in the Wolfrum Lab assays."	;
+	rdfs:label	"Analogs Hits Wolfrum collection NEG"	.
+jlw:assay_batch_MASSIVE_MSV000096523_pos	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5154F16S>	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"N/A"	;
+	prov:generatedAtTime	"2021-02"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 4 plants within the Pierre Fabre Library. The selection was guided by prior annotation matches to the structures of the 18 top-hit compounds in the Wolfrum Lab assays."	;
+	rdfs:label	"Analogs Hits Wolfrum collection POS"	.
+jlw:assay_batch_MASSIVE_MSV000096528_neg	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5CF9JJ9Z>	;
+	jlw:has_operator	jlw:Louis-Felix_Nothias	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"N/A"	;
+	prov:generatedAtTime	"2023-04"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 277 samples within the Pierre Fabre Library. The selection aimed to increase the profiling of the PFL library with complementary samples of the PF1600 selection."	;
+	rdfs:label	"LCMS of VGF extra plates collection NEG"	.
+jlw:assay_batch_MASSIVE_MSV000096528_pos	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C5CF9JJ9Z>	;
+	jlw:has_operator	jlw:Louis-Felix_Nothias	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"N/A"	;
+	prov:generatedAtTime	"2023-04"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from a selection of 277 samples within the Pierre Fabre Library. The selection aimed to increase the profiling of the PFL library with complementary samples of the PF1600 selection."	;
+	rdfs:label	"LCMS of VGF extra plates collection POS"	.
+jlw:assay_batch_MASSIVE_MSV000096531_neg	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C50863H8C>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_5"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2022-04"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from the microfractions derives from the HPLC-bioactivity profiling of 3 samples (Rheum rhabarbarum,  Psiadia altissima and Psiadia glutinosa) within the Pierre Fabre Library."	;
+	rdfs:label	"LCMS of Olivier Xtra collection NEG"	.
+jlw:assay_batch_MASSIVE_MSV000096531_pos	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C50863H8C>	;
+	dcterms:license	"CC BY-SA-4.0"	;
+	jlw:has_operator	jlw:Olivier_Kirchhoffer	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"Thesis_Olivier_K_Chapter_5"	;
+	prov:generated	"10.13097/archive-ouverte/unige:182418"	;
+	prov:generatedAtTime	"2022-04"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises untargeted mass spectrometry data from the microfractions derives from the HPLC-bioactivity profiling of 3 samples (Rheum rhabarbarum,  Psiadia altissima and Psiadia glutinosa) within the Pierre Fabre Library."	;
+	rdfs:label	"LCMS of Olivier Xtra collection POS"	.
+jlw:assay_batch_MEMO	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C59J97>	;
+	dcterms:license	"https://creativecommons.org/publicdomain/zero/1.0/"	;
+	jlw:has_operator	jlw:Arnaud_Gaudry	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"doi:10.3389/fbinf.2022.842964"	;
+	prov:generated	"doi:10.3389/fbinf.2022.842964"	;
+	prov:generatedAtTime	"2022-01"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises the MEMO results for the aligned datatreatment of the PF1600 selection. Data described in MEMO paper (doi.org/10.3389/fbinf.2022.842964)"	;
+	rdfs:label	"MEMO analysis results"	.
+jlw:assay_batch_MZMINE	a	jlw:AssayBatch	;
+	dcat:downloadURL	<https://doi.org/10.25345/C59J98>	;
+	dcterms:license	"https://creativecommons.org/publicdomain/zero/1.0/"	;
+	jlw:has_operator	jlw:Pierre-Marie_Allard	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"doi:10.1093/gigascience/giac124"	;
+	prov:generated	"doi:10.1093/gigascience/giac124"	;
+	prov:generatedAtTime	"2020-01"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises the MZmine results for the aligned datatreatment of the PF1600 selection. Data described in MEMO paper (doi.org/10.3389/fbinf.2022.842964)"	;
+	rdfs:label	"MZMINE analysis results"	.
+jlw:assay_batch_RF_NOV2024	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/ZF marinum data table.xlsx"^^xsd:anyURI	;
+	dcterms:license	"Unpublished"	;
+	jlw:has_operator	jlw:Richard_Fish	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"20240422_NitschkeJahn_PhD_thesis.pdf"	;
+	prov:generated	"Unpublished"	;
+	rdfs:comment	"Infection of zebrafish (Danio rerio) embryos with M. marinum GFP and quantification of bacteria loads"	;
+	rdfs:label	"Zebra fish assay"	.
+jlw:assay_batch_SwissTPH	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/jlw_pf_bioassay_trypanosomatids_20190522.tsv"^^xsd:anyURI	;
+	jlw:has_operator	jlw:unknown	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"https://doi.org/10.1021/acscentsci.3c00800"	;
+	prov:generated	"https://doi.org/10.1021/acscentsci.3c00800"	;
+	prov:generatedAtTime	"2022-01"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises bioactivity screening results of the PF1600 selection against Leishmania donovani and Trypanosoma brucei rhodesiense using cell-based assays."	;
+	rdfs:label	"SwissTPH assay batch"	.
+jlw:assay_batch_TS_APR2023	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/20240314_validated_hit_compounds.tsv"^^xsd:anyURI	;
+	dcterms:license	"CC BY-NC 4.0"	;
+	jlw:has_operator	jlw:Jahn_Nitschke	;
+	jlw:inDMP	"yes"	;
+	jlw:usedArticle	"https://doi.org/10.1101/2024.12.03.626613"	;
+	jlw:usedProtocol	"20240422_NitschkeJahn_PhD_thesis.pdf"	;
+	prov:generatedAtTime	"2023-04"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises either anti-M. marinum activity and/or anti infective activity results from infection assay using Dictyostelium discoideum (Dd) infected with Mycobacterium marinum (Mm) as a model system to study Mycobacterium tuberculosis (Mtb) infection in human macrophages, obtained through experiments conducted by the Soldati lab."	;
+	rdfs:label	"TS lab bio assay APR 2023"	.
+jlw:assay_batch_TS_DEC2022	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/20230613_extracts_PF1877.tsv 20230613_extracts_validation_taxodiverse_smart.tsv"^^xsd:anyURI	;
+	dcterms:license	"Creative Commons Attribution License (CC BY)."	;
+	jlw:has_operator	jlw:Jahn_Nitschke	;
+	jlw:inDMP	"yes"	;
+	jlw:usedArticle	"https://doi.org/10.1101/2024.12.03.626613"	;
+	jlw:usedProtocol	"20240422_NitschkeJahn_PhD_thesis.pdf"	;
+	prov:generated	"https://doi.org/10.3389/fntpr.2023.1279761, 10.26434/chemrxiv-2024-zwx80"	;
+	prov:generatedAtTime	"2022-12"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises either anti-M. marinum activity and/or anti infective activity results from infection assay using Dictyostelium discoideum (Dd) infected with Mycobacterium marinum (Mm) as a model system to study Mycobacterium tuberculosis (Mtb) infection in human macrophages, obtained through experiments conducted by the Soldati lab."	;
+	rdfs:label	"TS lab bio assay DEC 2022"	.
+jlw:assay_batch_TS_JAN2024	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/20240314_validated_hit_compounds.tsv"^^xsd:anyURI	;
+	dcterms:license	"CC BY-NC 4.0"	;
+	jlw:has_operator	jlw:Jahn_Nitschke	;
+	jlw:inDMP	"yes"	;
+	jlw:usedArticle	"https://doi.org/10.1101/2024.12.03.626613"	;
+	jlw:usedProtocol	"20240422_NitschkeJahn_PhD_thesis.pdf"	;
+	prov:generatedAtTime	"2024-01"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises either anti-M. marinum activity and/or anti infective activity results from infection assay using Dictyostelium discoideum (Dd) infected with Mycobacterium marinum (Mm) as a model system to study Mycobacterium tuberculosis (Mtb) infection in human macrophages, obtained through experiments conducted by the Soldati lab."	;
+	rdfs:label	"TS lab bio assay JAN 2024"	.
+jlw:assay_batch_TS_JUN2023	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/20240314_validated_hit_compounds.tsv"^^xsd:anyURI	;
+	dcterms:license	"CC BY-NC 4.0"	;
+	jlw:has_operator	jlw:Jahn_Nitschke	;
+	jlw:inDMP	"yes"	;
+	jlw:usedArticle	"https://doi.org/10.1101/2024.12.03.626613"	;
+	jlw:usedProtocol	"20240422_NitschkeJahn_PhD_thesis.pdf"	;
+	prov:generatedAtTime	"2023-06"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises either anti-M. marinum activity and/or anti infective activity results from infection assay using Dictyostelium discoideum (Dd) infected with Mycobacterium marinum (Mm) as a model system to study Mycobacterium tuberculosis (Mtb) infection in human macrophages, obtained through experiments conducted by the Soldati lab."	;
+	rdfs:label	"TS lab bio assay JUN 2023"	.
+jlw:assay_batch_TS_MAR2023	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/20230613_extracts_validation_taxodiverse_smart.tsv"^^xsd:anyURI	;
+	dcterms:license	"Creative Commons Attribution License (CC BY)."	;
+	jlw:has_operator	jlw:Jahn_Nitschke	;
+	jlw:inDMP	"yes"	;
+	jlw:usedArticle	"https://doi.org/10.1101/2024.12.03.626613"	;
+	jlw:usedProtocol	"20240422_NitschkeJahn_PhD_thesis.pdf"	;
+	prov:generated	"https://doi.org/10.3389/fntpr.2023.1279761, 10.26434/chemrxiv-2024-zwx80"	;
+	prov:generatedAtTime	"2023-03"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises either anti-M. marinum activity and/or anti infective activity results from infection assay using Dictyostelium discoideum (Dd) infected with Mycobacterium marinum (Mm) as a model system to study Mycobacterium tuberculosis (Mtb) infection in human macrophages, obtained through experiments conducted by the Soldati lab."	;
+	rdfs:label	"TS lab bio assay MAR 2023"	.
+jlw:assay_batch_TS_MAY2022	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/20220706_pilot_cpd_tracking.tsv"^^xsd:anyURI	;
+	dcterms:license	"CC BY-NC 4.0"	;
+	jlw:has_operator	jlw:Jahn_Nitschke	;
+	jlw:inDMP	"yes"	;
+	jlw:usedArticle	"https://doi.org/10.1101/2024.12.03.626613"	;
+	jlw:usedProtocol	"20240422_NitschkeJahn_PhD_thesis.pdf"	;
+	prov:generatedAtTime	"2022-05"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises either anti-M. marinum activity and/or anti infective activity results from infection assay using Dictyostelium discoideum (Dd) infected with Mycobacterium marinum (Mm) as a model system to study Mycobacterium tuberculosis (Mtb) infection in human macrophages, obtained through experiments conducted by the Soldati lab."	;
+	rdfs:label	"TS lab bio assay MAY 2022"	.
+jlw:assay_batch_TS_MAY2023	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/20240314_validated_hit_compounds.tsv"^^xsd:anyURI	;
+	dcterms:license	"CC BY-NC 4.0"	;
+	jlw:has_operator	jlw:Jahn_Nitschke	;
+	jlw:inDMP	"yes"	;
+	jlw:usedArticle	"https://doi.org/10.1101/2024.12.03.626613"	;
+	jlw:usedProtocol	"20240422_NitschkeJahn_PhD_thesis.pdf"	;
+	prov:generatedAtTime	"2023-05"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises either anti-M. marinum activity and/or anti infective activity results from infection assay using Dictyostelium discoideum (Dd) infected with Mycobacterium marinum (Mm) as a model system to study Mycobacterium tuberculosis (Mtb) infection in human macrophages, obtained through experiments conducted by the Soldati lab."	;
+	rdfs:label	"TS lab bio assay MAY 2023"	.
+jlw:assay_batch_TS_MAY2024	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/20240614_validated_hit_compounds.tsv"^^xsd:anyURI	;
+	dcterms:license	"CC BY-NC 4.0"	;
+	jlw:has_operator	jlw:Jahn_Nitschke	;
+	jlw:inDMP	"yes"	;
+	jlw:usedArticle	"https://doi.org/10.1101/2024.12.03.626613"	;
+	jlw:usedProtocol	"20240422_NitschkeJahn_PhD_thesis.pdf"	;
+	prov:generatedAtTime	"2024-05"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises either anti-M. marinum activity and/or anti infective activity results from infection assay using Dictyostelium discoideum (Dd) infected with Mycobacterium marinum (Mm) as a model system to study Mycobacterium tuberculosis (Mtb) infection in human macrophages, obtained through experiments conducted by the Soldati lab."	;
+	rdfs:label	"TS lab bio assay MAY 2024"	.
+jlw:assay_batch_TS_SEP2023	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/20240314_validated_hit_compounds.tsv"^^xsd:anyURI	;
+	dcterms:license	"CC BY-NC 4.0"	;
+	jlw:has_operator	jlw:Jahn_Nitschke	;
+	jlw:inDMP	"yes"	;
+	jlw:usedArticle	"https://doi.org/10.1101/2024.12.03.626613"	;
+	jlw:usedProtocol	"20240422_NitschkeJahn_PhD_thesis.pdf"	;
+	prov:generatedAtTime	"2023-09"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises either anti-M. marinum activity and/or anti infective activity results from infection assay using Dictyostelium discoideum (Dd) infected with Mycobacterium marinum (Mm) as a model system to study Mycobacterium tuberculosis (Mtb) infection in human macrophages, obtained through experiments conducted by the Soldati lab."	;
+	rdfs:label	"TS lab bio assay SEP 2023"	.
+jlw:assay_batch_VK_Wnt_1600	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/PF1600_Wnt.csv"^^xsd:anyURI	;
+	dcterms:license	"Unpublished"	;
+	jlw:has_operator	jlw:Alexey_Koval	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"https://doi.org/10.3389/fonc.2020.602817"	;
+	prov:generated	"10.3389/fchem.2024.1371982"	;
+	prov:generatedAtTime	"2020-03"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises Wnt-dependent transcriptional activity screening results for the PF1600 selection using a luciferase-based assay."	;
+	rdfs:label	"VK lab bio assay Wnt 1600 MAR 2020"	.
+jlw:assay_batch_VK_Wnt_Celastraceae	a	jlw:AssayBatch	;
+	dcat:downloadURL	"https://www.sinergiawolfender.org/protected/jlw/data/Celastraceae_wnt.tsv"^^xsd:anyURI	;
+	dcterms:license	"Unpublished"	;
+	jlw:has_operator	jlw:Alexey_Koval	;
+	jlw:inDMP	"yes"	;
+	jlw:usedProtocol	"https://doi.org/10.3389/fonc.2020.602817"	;
+	prov:generated	"10.13097/archive-ouverte/unige:171177"	;
+	prov:generatedAtTime	"2020-01"^^xsd:gYearMonth	;
+	rdfs:comment	"This dataset comprises Wnt-dependent transcriptional activity screening results for the Celastraceae selection using a luciferase-based assay."	;
+	rdfs:label	"VK lab bio assay Wnt Celastraceae JAN 2020"	.

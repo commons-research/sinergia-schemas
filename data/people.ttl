@@ -1,0 +1,153 @@
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#>   .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#>         .
+@prefix jlw:    <https://www.sinergiawolfender.org/jlw/>    .
+@prefix foaf:	<http://xmlns.com/foaf/0.1/>                .
+@prefix orcid:	<http://orcid.org/>                         .
+@prefix sdo:	<http://schema.org/>                        .
+@prefix prov:    <http://www.w3.org/ns/prov#/>        .
+
+jlw:Marco_Pagni a foaf:Person , prov:Person ;
+	rdfs:label      "Marco Pagni"                  ;
+	sdo:name        "Marco Pagni"                  ;
+    sdo:identifier  orcid:0000-0001-9292-9463      ;
+	sdo:email       <mailto:marco.pagni@sib.swiss> ;
+    sdo:affiliation <https://www.sib.swiss>        . 
+	
+jlw:Florence_Mehl a foaf:Person , prov:Person  ;
+	rdfs:label      "Florence Mehl"                  ;
+	sdo:name        "Florence Mehl"                  ;
+    sdo:identifier  orcid:0000-0002-9619-1707        ;
+	sdo:email       <mailto:florence.mehl@sib.swiss> ;
+    sdo:affiliation <https://www.sib.swiss>          .
+	
+jlw:Sebastien_Moretti a foaf:Person , prov:Person ;
+	rdfs:label      "Sébastien Moretti"                  ;
+	sdo:name        "Sébastien Moretti"                  ;
+    sdo:identifier  orcid:0000-0003-3947-488X            ;
+	sdo:email       <mailto:Sebastien.Moretti@sib.swiss> ;
+    sdo:affiliation <https://www.sib.swiss>              .
+	
+jlw:Olivier_Kirchhoffer a foaf:Person , prov:Person  ;
+	rdfs:label      "Olivier_Kirchhoffer"                 ;
+	sdo:name        "Olivier_Kirchhoffer"                 ;
+    sdo:identifier  orcid:0000-0001-7567-1050             ;
+	sdo:email       <mailto:Olivier.Kirchhoffer@unige.ch> ;
+    sdo:affiliation <https://www.unige.ch>                ;
+	jlw:lab_book_initals "OK"                             .
+	
+jlw:Elena_Gardenghi a foaf:Person , prov:Person  ;
+	rdfs:label      "Elena Gardenghi"                ;
+	sdo:name        "Elena Gardenghi"                ;
+#    sdo:identifier  orcid:0000-0001-7567-1050       ;
+	sdo:email       <Elena.Gardenghi@unige.ch>   ;
+    sdo:affiliation <https://www.unige.ch>           ;
+	jlw:lab_book_initals "EG"                        .
+	
+jlw:Arnaud_Gaudry a foaf:Person , prov:Person  ;
+	rdfs:label        "Arnaud Gaudry"                  ;
+	sdo:name        "Arnaud Gaudry"                  ;
+	sdo:identifier  orcid:0000-0002-3648-7362        ;
+	sdo:email       <mailto:Arnaud.Gaudry@unige.ch>  ;
+	sdo:affiliation <https://www.unige.ch>           .
+	
+jlw:Paola_Haemmerli a foaf:Person , prov:Person  ;
+	rdfs:label      "Paola Haemmerli"                  ;
+    sdo:name        "Paola Haemmerli"                  ;
+    #sdo:identifier  orcid:0000-0003-3389-2191          ;
+    sdo:email       <mailto:paola.haemmerli@unige.ch> ;
+    sdo:affiliation <https://unige.ch/>             .
+	 
+jlw:Jean-Luc_Wolfender a foaf:Person , prov:Person  ;
+	rdfs:label      "Jean-Luc Wolfender"                 ;
+	sdo:name        "Jean-Luc Wolfender"                 ;
+	sdo:identifier  orcid:0000-0002-0125-952X            ;
+	sdo:email       <mailto:Jean-Luc.Wolfender@unige.ch> ;
+	sdo:affiliation <https://www.unige.ch>               .
+
+jlw:Adriano_Rutz a foaf:Person , prov:Person  ;
+	rdfs:label      "Adriano Rutz"                 ;
+	sdo:name        "Adriano Rutz"                 ;
+	sdo:identifier  orcid:0000-0003-0443-9902      ;
+	sdo:email       <mailto:Adriano.Rutz@unige.ch> ;
+	sdo:affiliation <https://www.unige.ch>         .
+ 	
+jlw:Luis-Manuel_Quiros-Guerrero a foaf:Person , prov:Person  ;
+	rdfs:label      "Luis-Manuel Quiros-Guerrero"   ;
+	sdo:name        "Luis-Manuel Quiros-Guerrero"   ;
+	sdo:identifier  orcid:0000-0002-1630-8697       ;
+	sdo:email       <mailto:Luis.Guerrero@unige.ch> ;
+	sdo:affiliation <https://www.unige.ch>          .
+
+jlw:Louis-Felix_Nothias a foaf:Person , prov:Person  ;
+	rdfs:label      "Louis-Félix Nothias"                 ;
+	sdo:name        "Louis-Félix Nothias"                 ;
+	sdo:identifier  orcid:0000-0001-6711-6719             ;
+	sdo:email       <mailto:Louis-Felix.Nothias@unige.ch> ;
+	sdo:affiliation <https://www.unige.ch>                .
+
+jlw:Emerson_Ferreira_Queiroz a foaf:Person , prov:Person  ;
+	rdfs:label      "Emerson Ferreira Queiroz"         ;
+	sdo:name        "Emerson Ferreira Queiroz"         ;
+	sdo:identifier  orcid:0000-0001-9567-1664          ;
+	sdo:email       <mailto:Emerson.Ferreira@unige.ch> ;
+	sdo:affiliation <https://www.unige.ch>             .
+
+jlw:Frederic_Burdet a foaf:Person , prov:Person  ;
+	rdfs:label      "Frédéric Burdet"                  ;
+    sdo:name        "Frédéric Burdet"                  ;
+    sdo:identifier  orcid:0000-0002-2923-827X          ;
+    sdo:email       <mailto:frederic.burdet@sib.swiss> ;
+    sdo:affiliation <https://www.sib.swiss>             .
+
+jlw:Chunyan_Wu a foaf:Person , prov:Person  ;
+	rdfs:label      "Chunyan Wu"                  ;
+    sdo:name        "Chunyan Wu"                  ;
+    #sdo:identifier  orcid:missing          ;
+    sdo:email       <mailto:chunyan.wu@hest.ethz.ch> ;
+    sdo:affiliation <https://hest.ethz.ch/>             .
+
+jlw:Jahn_Nitschke a foaf:Person , prov:Person  ;
+	rdfs:label      "Jahn Nitschke"                  ;
+    sdo:name        "Jahn Nitschke"                  ;
+    sdo:identifier  orcid:0000-0003-3838-0945          ;
+    sdo:email       <mailto:Jahn.Nitschke@unige.ch> ;
+    sdo:affiliation <https://unige.ch/>             .
+
+jlw:Nabil_Hanna a foaf:Person , prov:Person  ;
+	rdfs:label      "Nabil Hanna"                  ;
+    sdo:name        "Nabil Hanna"                  ;
+    sdo:identifier  orcid:0000-0002-3288-5486          ;
+    sdo:email       <mailto:nabil.hanna@unige.ch> ;
+    sdo:affiliation <https://unige.ch/>             .
+
+jlw:Thierry_Soldati a foaf:Person , prov:Person  ;
+	rdfs:label      "Thierry Soldati"                  ;
+    sdo:name        "Thierry Soldati"                  ;
+    sdo:identifier  orcid:0000-0002-2056-7931          ;
+    sdo:email       <mailto:thierry.soldati@unige.ch> ;
+    sdo:affiliation <https://unige.ch/>             .
+
+jlw:Pierre-Marie_Allard a foaf:Person , prov:Person  ;
+	rdfs:label      "Pierre-Marie Allard"                  ;
+    sdo:name        "Pierre-Marie Allard"                  ;
+    sdo:identifier  orcid:0000-0003-3389-2191          ;
+    sdo:email       <mailto:pierre-marie.allard@unifr.ch> ;
+    sdo:affiliation <https://unifr.ch/>             .
+
+jlw:Christian_Wolfrum a foaf:Person , prov:Person  ;
+	rdfs:label      "Christian Wolfrum"                  ;
+    sdo:name        "Christian Wolfrum"                  ;
+    sdo:identifier  orcid:0000-0002-3862-6805          ;
+    sdo:email       <mailto:christian-wolfrum@ethz.ch> ;
+    sdo:affiliation <https://epfz.ch/>             .
+
+jlw:Erick_Carreira a foaf:Person , prov:Person  ;
+	rdfs:label      "Erick Carreira"                  ;
+    sdo:name        "Erick Carreira"                  ;
+    sdo:identifier  orcid:0000-0003-1472-490X          ;
+    sdo:email       <mailto:erickm.carreira@org.chem.ethz.ch> ;
+    sdo:affiliation <https://ethz.ch/> .
+
+jlw:anonymous a foaf:Person , prov:Person  ;
+	rdfs:label      "unknown person"                  ;
+    sdo:name        "unknown person"                  .

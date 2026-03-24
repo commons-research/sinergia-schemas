@@ -1,0 +1,586 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>   .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#>         .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#>          .
+@prefix owl:     <http://www.w3.org/2002/07/owl#>                .
+@prefix doi:     <https://doi.org/>                               .
+@prefix pmid:    <http://rdf.ncbi.nlm.nih.gov/pubmed/>           .      
+@prefix jlw:     <https://www.sinergiawolfender.org/jlw/>        .
+@prefix prov:    <http://www.w3.org/ns/prov#/>        .
+@prefix xsd:  	 <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcat:    <http://www.w3.org/ns/dcat#>                  .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# bio batches
+
+jlw:AssayBatch a owl:Class  ; # TODO change all rdfs:Class to owl:Class. All owl:Class are rdfs:Class, but not the other way around!
+	rdfs:subClassOf skos:Collection, prov:Activity ;
+	skos:members jlw:AllAssayBatch ;
+	rdfs:label "Assay batch of results"       ; 
+	rdfs:comment "A collection of analyses acquired at the same time and at the same place under the same protocol. It might also be called an analytical batch." .
+
+# jlw:assay_batch_SwissTPH a jlw:AssayBatch ;
+#     rdfs:label   "SwissTPH assay batch"           ;
+#     rdfs:comment "SwissTPH assay batch on ... as decribed in ..." ;
+# 	prov:generatedAtTime "2022"^^xsd:gYearMonth   ;
+#     jlw:has_operator jlw:anonymous ;
+# 	jlw:usedProtocol <https://chemrxiv.org/engage/chemrxiv/article-details/649ea085ba3e99daef499a00> ;
+# 	dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/jlw_pf_bioassay_trypanosomatids_20190522.tsv"^^xsd:anyURI ; 
+#     dcterms:license "placeholder" .
+
+# jlw:assay_batch_CW_JUN2022 a jlw:AssayBatch ;
+#     rdfs:label   "CW assay batch JUN2022"      ;
+#     rdfs:comment "Cell culture microscopy analysis performed in CW lab, first run (JUN2022)"   ;
+# 	prov:generatedAtTime "2022-06"^^xsd:gYearMonth   ;
+# 	#jlw:has_analysis_date "2022-06"^^xsd:gYearMonth   ;
+# 	jlw:has_operator jlw:Chunyan_Wu ;
+# 	jlw:usedProtocol jlw:CWProtocol_2022 ;
+#     dcterms:license "Unpublished (?)" ;
+# 	dcat:accessURL "sinergiawolfender/groups/wolfrum_lab_data" . # this is the folder with all the raw data
+
+# jlw:assay_batch_CW_MAY2023 a jlw:AssayBatch ;
+#     rdfs:label   "CW assay batch MAY2023"      ;
+#     rdfs:comment "Cell culture microscopy analysis performed in CW lab, second run (MAY2023)"   ;
+# 	prov:generatedAtTime "2023-05"^^xsd:gYearMonth   ;
+# 	jlw:has_operator jlw:Chunyan_Wu ;
+# 	jlw:usedProtocol jlw:CWProtocol_2022 ;
+# 	dcat:accessURL "sinergiawolfender/groups/wolfrum_lab_data/MAY2023" . # this is the folder with all the raw data
+
+# jlw:assay_batch_TS_MAY2022 a jlw:AssayBatch ;
+#     rdfs:label   "TS lab bio assay MAY 2022" ;
+#     rdfs:comment "Anti-mycobacteria biological analysis performed in TS lab, first run (MAY2022)" ;
+# 	prov:generatedAtTime "2022-05"^^xsd:gYearMonth ; # Is it correct to use a gYearMonth and not a DateTime?
+# 	jlw:has_operator jlw:Jahn_Nitschke ;
+# 	jlw:usedProtocol jlw:TS_thesis_JNitschke ;
+# 	dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/20220706_pilot_cpd_tracking.tsv"^^xsd:anyURI ; 
+# 	prov:generated doi:paperResultsSoldati .
+
+# jlw:assay_batch_TS_DEC2022 a jlw:AssayBatch ;
+#     rdfs:label   "TS lab bio assay DEC 2022" ;
+#     rdfs:comment "Anti-mycobacteria biological analysis performed in TS lab, second run (DEC2022)" ;
+# 	prov:generatedAtTime "2022-12"^^xsd:gYearMonth ; # probably need to convert to full date time
+# 	jlw:has_operator jlw:Jahn_Nitschke ;
+# 	jlw:usedProtocol jlw:TS_thesis_JNitschke ;
+# 	dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/20230613_extracts_PF1877.tsv"^^xsd:anyURI ;
+# 	dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/20230613_extracts_validation_taxodiverse_smart.tsv"^^xsd:anyURI ;
+# 	prov:generated doi:paperResultsSoldati .
+
+# jlw:assay_batch_TS_MAR2023 a jlw:AssayBatch ;
+#     rdfs:label   "TS lab bio assay MAR 2023" ;
+#     rdfs:comment "Anti-mycobacteria biological analysis performed in TS lab, validation of second run (MAR2023)" ;
+# 	prov:generatedAtTime "2023-03"^^xsd:gYearMonth ; # probably need to convert to full date time
+# 	jlw:has_operator jlw:Jahn_Nitschke ;
+# 	jlw:usedProtocol jlw:TS_thesis_JNitschke ;
+# 	dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/20230613_extracts_validation_taxodiverse_smart.tsv"^^xsd:anyURI ;
+# 	prov:generated doi:paperResultsSoldati .
+
+# jlw:assay_batch_TS_APR2023 a jlw:AssayBatch ;
+#     rdfs:label   "TS lab bio assay APR 2023" ;
+#     rdfs:comment "Anti-mycobacteria biological analysis performed in TS lab, testing fractionations of validated hits (APR2023)" ;
+# 	prov:generatedAtTime "2023-04"^^xsd:gYearMonth ; # probably need to convert to full date time
+# 	jlw:has_operator jlw:Jahn_Nitschke ;
+# 	jlw:usedProtocol jlw:TS_thesis_JNitschke ;
+# 	dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/20240314_validated_hit_compounds.tsv"^^xsd:anyURI ;
+# 	prov:generated doi:paperResultsSoldati .
+
+# jlw:assay_batch_TS_MAY2023 a jlw:AssayBatch ;
+#     rdfs:label   "TS lab bio assay MAY 2023" ;
+#     rdfs:comment "Anti-mycobacteria biological analysis performed in TS lab, testing fractionations of validated hits (MAY2023)" ;
+# 	prov:generatedAtTime "2023-05"^^xsd:gYearMonth ; # probably need to convert to full date time
+# 	jlw:has_operator jlw:Jahn_Nitschke ;
+# 	jlw:usedProtocol jlw:TS_thesis_JNitschke ;
+# 	dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/20240314_validated_hit_compounds.tsv"^^xsd:anyURI ;
+# 	prov:generated doi:paperResultsSoldati .
+
+# jlw:assay_batch_TS_JUN2023 a jlw:AssayBatch ;
+#     rdfs:label   "TS lab bio assay JUN 2023" ;
+#     rdfs:comment "Anti-mycobacteria biological analysis performed in TS lab, testing fractionations of validated hits (JUN2023)" ;
+# 	prov:generatedAtTime "2023-06"^^xsd:gYearMonth ; # probably need to convert to full date time
+# 	jlw:has_operator jlw:Jahn_Nitschke ;
+# 	jlw:usedProtocol jlw:TS_thesis_JNitschke ;
+# 	dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/20240314_validated_hit_compounds.tsv"^^xsd:anyURI ;
+# 	prov:generated doi:paperResultsSoldati .
+
+# jlw:assay_batch_TS_SEP2023 a jlw:AssayBatch ;
+#     rdfs:label   "TS lab bio assay SEP 2023" ;
+#     rdfs:comment "Anti-mycobacteria biological analysis performed in TS lab, testing fractionations of validated hits (SEP2023)" ;
+# 	prov:generatedAtTime "2023-09"^^xsd:gYearMonth ; # probably need to convert to full date time
+# 	jlw:has_operator jlw:Jahn_Nitschke ;
+# 	jlw:usedProtocol jlw:TS_thesis_JNitschke ;
+# 	dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/20240314_validated_hit_compounds.tsv"^^xsd:anyURI ;
+# 	prov:generated doi:paperResultsSoldati .
+
+# jlw:assay_batch_TS_JAN2024 a jlw:AssayBatch ;
+#     rdfs:label   "TS lab bio assay JAN 2024" ;
+#     rdfs:comment "Anti-mycobacteria biological analysis performed in TS lab, testing fractionations of validated hits (JAN2024)" ;
+# 	prov:generatedAtTime "2024-01"^^xsd:gYearMonth ; # probably need to convert to full date time
+# 	jlw:has_operator jlw:Jahn_Nitschke ;
+# 	jlw:usedProtocol jlw:TS_thesis_JNitschke ;
+# 	dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/20240314_validated_hit_compounds.tsv"^^xsd:anyURI ;
+# 	prov:generated doi:paperResultsSoldati .
+
+# jlw:assay_batch_TS_MAY2024 a jlw:AssayBatch ;
+#     rdfs:label   "TS lab bio assay MAY 2024" ;
+#     rdfs:comment "Anti-mycobacteria biological analysis performed in TS lab, testing fractionations of validated hits (MAY2024)" ;
+# 	prov:generatedAtTime "2024-05"^^xsd:gYearMonth ; # probably need to convert to full date time
+# 	jlw:has_operator jlw:Jahn_Nitschke ;
+# 	jlw:usedProtocol jlw:TS_thesis_JNitschke ;
+# 	dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/20240614_validated_hit_compounds.tsv"^^xsd:anyURI ;
+# 	prov:generated doi:paperResultsSoldati .
+
+# jlw:assay_batch_CT_RSV_PF1600 a jlw:AssayBatch ;
+#     rdfs:label   "CT lab bio assay RSV PF1600" ;
+#     rdfs:comment "RSV Inhibitory bioactivity assay performed in Caroline Tapparel lab on a subset of the PF1600 collection (plates VGF150-VGF159), the TAXODIVERSE and CELASTRACEAE Collections, first run (2023)" ;
+#     prov:generatedAtTime "2023-12"^^xsd:gYearMonth ;
+#     jlw:usedArticle "LuisToAskPaola" ;
+#     jlw:has_operator jlw:Paola_Haemmerli ;
+#     dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/VGF150_159_results_RSV.tsv"^^xsd:anyURI .
+
+# jlw:assay_batch_CT_RSV_Taxodiverse a jlw:AssayBatch ;
+#     rdfs:label   "CT lab bio assay RSV Taxodiverse" ;
+#     rdfs:comment "" ;
+#     prov:generatedAtTime "2023-12"^^xsd:gYearMonth ;
+#     jlw:usedArticle "LuisToAskPaola" ;
+#     jlw:has_operator jlw:Paola_Haemmerli ;
+#     dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/RSV_results_taxodiverse.tsv"^^xsd:anyURI . 
+    
+# jlw:assay_batch_CT_RSV_Celastraceae a jlw:AssayBatch ;
+#     rdfs:label   "CT lab bio assay RSV Celastraceae" ;
+#     rdfs:comment "" ;
+#     prov:generatedAtTime "2023-12"^^xsd:gYearMonth ;
+#     jlw:usedArticle "LuisToAskPaola" ;
+#     jlw:has_operator jlw:Paola_Haemmerli ;
+#     dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/RSV_results_celastraceae.tsv"^^xsd:anyURI .
+
+# jlw:assay_batch_VK_Wnt_1600 a jlw:AssayBatch ;
+#     rdfs:label   "VK lab bio assay Wnt 1600 MAR 2020" ;
+#     rdfs:comment "Wnt-regulation bioactivity assay performed in Vladimir Katanaev lab on the PF1600 collection, first run (2020)" ;
+#     prov:generatedAtTime "2020-03"^^xsd:gYearMonth ;
+#     jlw:has_operator jlw:Alexey_Koval ;
+#     jlw:usedArticle <https://doi.org/10.3389/fonc.2020.602817> ;
+#     dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/PF1600_Wnt.csv"^^xsd:anyURI . # TODO convert xlsx in tsv
+  
+# jlw:assay_batch_VK_Wnt_Celastraceae a jlw:AssayBatch ;
+#     rdfs:label   "VK lab bio assay Wnt Celastraceae JAN 2020" ;
+#     rdfs:comment "Wnt-regulation bioactivity assay performed in Vladimir Katanaev lab on the Celastraceae collection, first run (2020)" ;
+#     prov:generatedAtTime "2020-01"^^xsd:gYearMonth ;
+#     jlw:has_operator jlw:Alexey_Koval ;
+#     jlw:usedArticle <https://doi.org/10.3389/fonc.2020.602817> ;
+#     dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/Celastraceae_wnt.tsv"^^xsd:anyURI . # TODO add symlink
+
+# jlw:assay_batch_INVENTA_1600_aligned a jlw:AssayBatch ;
+#     rdfs:label              "INVENTA aligned analysis results"    ;
+#     rdfs:comment            "INVENTA analysis results on 1600 samples, aligned"    ;
+# 	prov:generatedAtTime "2022"^^xsd:gYearMonth ;
+#     jlw:has_operator jlw:Luis-Manuel_Quiros-Guerrero ; 
+# 	prov:generated     <https://doi.org/10.3389/fmolb.2022.1028334> ;
+#     dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/Celastraceae_Inventa_POS_Aligned.tsv"^^xsd:anyURI .
+
+# jlw:assay_batch_INVENTA_1600_unaligned a jlw:AssayBatch ;
+#     rdfs:label              "INVENTA unaligned analysis results"    ;
+#     rdfs:comment            "INVENTA analysis results on 1600 samples, unaligned"    ;
+# 	prov:generatedAtTime "2023"^^xsd:gYearMonth ; 
+#     jlw:has_operator jlw:Luis-Manuel_Quiros-Guerrero ;
+# 	prov:generated     <https://doi.org/10.3389/fmolb.2022.1028334> ;
+#     dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/Celastraceae_Inventa_POS_Unaligned.tsv"^^xsd:anyURI .
+
+# jlw:assay_batch_INVENTA_Celastraceae_aligned a jlw:AssayBatch ;
+#     rdfs:label              "INVENTA alignedanalysis results"    ;
+#     rdfs:comment            "INVENTA analysis results on Celastraceae collection, aligned"    ;
+# 	prov:generatedAtTime "2022"^^xsd:gYearMonth ;
+#     jlw:has_operator jlw:Luis-Manuel_Quiros-Guerrero ; 
+# 	prov:generated     <https://doi.org/10.3389/fmolb.2022.1028334> ;
+#     dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/Celastraceae_Inventa_POS_Aligned.tsv"^^xsd:anyURI ;
+#     dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> .
+
+# jlw:assay_batch_INVENTA_Celastraceae_unaligned a jlw:AssayBatch ;
+#     rdfs:label              "INVENTA unaligned analysis results"    ;
+#     rdfs:comment            "INVENTA analysis results on Celastraceae collection, unaligned"    ;
+# 	prov:generatedAtTime "2023"^^xsd:gYearMonth ;
+#     jlw:has_operator jlw:Luis-Manuel_Quiros-Guerrero ; 
+# 	prov:generated     <https://doi.org/10.3389/fmolb.2022.1028334> ;
+#     dcat:downloadURL "https://www.sinergiawolfender.org/protected/jlw/data/Celastraceae_Inventa_POS_Unaligned.tsv"^^xsd:anyURI .
+	
+# jlw:assay_batch_MZMINE a jlw:AssayBatch ;
+#     rdfs:label              "MZMINE analysis results"    ;
+#     rdfs:comment            "MZMINE data mining analysis results"    ;
+# 	prov:generatedAtTime "202X"^^xsd:gYearMonth ;
+#     jlw:has_operator jlw:Pierre-Marie_Allard ; 
+# 	prov:generated     <https://doi.org/10.1093/gigascience/giac124> .
+
+# jlw:assay_batch_MEMO a jlw:AssayBatch ;
+#     rdfs:label              "MEMO analysis results"    ;
+#     rdfs:comment            "MEMO analysis results for the same samples than in the original MEMO paper (see protocol)."    ;
+# 	#jlw:has_analysis_protocol jlw:MEMO_analysis_protocol   ;
+# 	prov:generatedAtTime "2022"^^xsd:gYearMonth ; 
+# 	jlw:has_operator jlw:Arnaud_Gaudry ;
+# 	prov:generated <https://doi.org/10.3389/fbinf.2022.842964> .
+
+# # jlw:LCMS_run_GNPS_1600 a jlw:AssayBatch ;
+# #     rdfs:label              "LCMS GNPS 1600 extracts"    ;
+# #     rdfs:comment            "A dataset of 1600 extracts of plants from the Pierre Fabre extracts collection. Contains Blanks and QC. Profiled using UHPLC-HRMSMS on a Q-Exactive Focus orbitrap MS. Data dependant. Pos and Neg ionization mode. This dataset was generated using a subset of a wider natural extracts collection. This collection as been declared, approved and registered by the European Commission under the accesion number 03-FR-2020 of the EU ABS Collections."    ;
+# # 	prov:generatedAtTime "2021"^^xsd:gYearMonth ; 
+# # 	jlw:has_operator jlw:Pierre-Marie_Allard ;
+# #     dcat:accessURL "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=MSV000087728"^^xsd:anyURI .
+
+#######################################################################
+# LCMS batches
+#######################################################################
+
+# jlw:assay_batch_MASSIVE_MSV000096326_pos a jlw:AssayBatch ;
+#      rdfs:label              "LCMS of Combretaceae collection POS"    ;
+#  	 prov:generatedAtTime "2022-07"^^xsd:gYearMonth ;
+#      jlw:has_instrument_type "Q Exactive" ;
+#      dcat:accessURL <https://doi.org/10.25345/C5Z892S7W> ;
+#      dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096326/> ;
+#      jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#      jlw:has_operator jlw:Olivier_Kirchhoffer .
+
+# jlw:assay_batch_MASSIVE_MSV000096326_neg a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Combretaceae collection NEG"    ;
+# 	prov:generatedAtTime "2022-07"^^xsd:gYearMonth ;
+#     jlw:has_instrument_type "Q Exactive" ;
+#     dcat:accessURL <https://doi.org/10.25345/C5Z892S7W> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096326/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_operator jlw:Olivier_Kirchhoffer .
+
+# jlw:assay_batch_MASSIVE_MSV000096369_pos a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Expert collection POS"    ;
+# 	prov:generatedAtTime "2022-01"^^xsd:gYearMonth ;
+#     jlw:has_instrument_type "Exploris 120" ;
+#     dcat:accessURL <https://doi.org/10.25345/C5NP1WW5H> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096369/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_operator jlw:Arnaud_Gaudry .
+
+# jlw:assay_batch_MASSIVE_MSV000096369_neg a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Expert collection NEG"    ;
+# 	prov:generatedAtTime "2022-01"^^xsd:gYearMonth ;
+#     jlw:has_instrument_type "Exploris 120" ;
+#     dcat:accessURL <https://doi.org/10.25345/C5NP1WW5H> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096369/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_operator jlw:Arnaud_Gaudry .
+
+# jlw:assay_batch_MASSIVE_MSV000096328_pos a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Taxodiverse collection POS"    ;
+# 	prov:generatedAtTime "2022-11"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C5PV6BK2B> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096328/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Q Exactive" ;
+#     jlw:has_operator jlw:Louis-Felix_Nothias .
+
+# jlw:assay_batch_MASSIVE_MSV000096328_neg a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Taxodiverse collection NEG"    ;
+# 	prov:generatedAtTime "2022-11"^^xsd:gYearMonth ;
+#     jlw:has_instrument_type "Q Exactive" ;
+#     dcat:accessURL <https://doi.org/10.25345/C5PV6BK2B> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096328/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_operator jlw:Louis-Felix_Nothias .
+
+# jlw:assay_batch_MASSIVE_MSV000096366_pos a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Smart collection POS"    ;
+# 	prov:generatedAtTime "2022-11"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C51Z4251J> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096366/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Q Exactive" ;
+#     jlw:has_operator jlw:Louis-Felix_Nothias .
+
+# jlw:assay_batch_MASSIVE_MSV000096366_neg a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Smart collection NEG"    ;
+# 	prov:generatedAtTime "2022-11"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C51Z4251J> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096366/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Q Exactive" ;
+#     jlw:has_operator jlw:Louis-Felix_Nothias .
+
+# jlw:assay_batch_MASSIVE_MSV000087970_pos a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Celastraceae collection POS"    ;
+# 	prov:generatedAtTime "2020-02"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C5PJ9N> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v03/MSV000087970/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Q Exactive" ;
+#     jlw:has_operator jlw:Luis-Manuel_Quiros-Guerrero .
+
+# jlw:assay_batch_MASSIVE_MSV000087970_neg a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Celastraceae collection NEG"    ;
+# 	prov:generatedAtTime "2020-02"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C5PJ9N> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v03/MSV000087970/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Q Exactive" ;
+#     jlw:has_operator jlw:Luis-Manuel_Quiros-Guerrero .
+
+# jlw:assay_batch_MASSIVE_MSV000096510_pos a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Chemodiverse collection POS"    ;
+# 	prov:generatedAtTime "2021-02"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C5PV6BK3T> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096510/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Q Exactive" ;
+#     jlw:has_operator jlw:Arnaud_Gaudry .
+
+# jlw:assay_batch_MASSIVE_MSV000096510_neg a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Chemodiverse collection NEG"    ;
+# 	prov:generatedAtTime "2021-02"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C5PV6BK3T> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096510/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Q Exactive" ;
+#     jlw:has_operator jlw:Arnaud_Gaudry .
+
+# jlw:assay_batch_MASSIVE_MSV000096521_pos a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of PF tubes collection POS"    ;
+# 	prov:generatedAtTime "2023-02"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C58P5VN4K> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096521/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Exploris 120" ;
+#     jlw:has_operator jlw:Olivier_Kirchhoffer .
+
+# jlw:assay_batch_MASSIVE_MSV000096521_neg a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of PF tubes collection NEG"    ;
+# 	prov:generatedAtTime "2023-02"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C58P5VN4K> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096521/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Exploris 120" ;
+#     jlw:has_operator jlw:Olivier_Kirchhoffer .
+
+# jlw:assay_batch_MASSIVE_MSV000096367_pos a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of PF200 collection POS"    ;
+# 	prov:generatedAtTime "2021-09"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C5X63BH6V> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096367/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Exploris 120" ;
+#     jlw:has_operator jlw:Louis-Felix_Nothias .
+
+# jlw:assay_batch_MASSIVE_MSV000096367_neg a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of PF200 collection NEG"    ;
+# 	prov:generatedAtTime "2021-09"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C5X63BH6V> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096367/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Exploris 120" ;
+#     jlw:has_operator jlw:Louis-Felix_Nothias .
+
+# jlw:assay_batch_MASSIVE_MSV000096528_pos a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of VGF extra plates collection POS"    ;
+# 	prov:generatedAtTime "2023-04"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C5CF9JJ9Z> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096528/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Exploris 120" ;
+#     jlw:has_operator jlw:Louis-Felix_Nothias .
+
+# jlw:assay_batch_MASSIVE_MSV000096528_neg a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of VGF extra plates collection NEG"    ;
+# 	prov:generatedAtTime "2023-04"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C5CF9JJ9Z> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096528/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Exploris 120" ;
+#     jlw:has_operator jlw:Louis-Felix_Nothias .
+
+# jlw:assay_batch_MASSIVE_MSV000096522_pos a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Analogs Hits HDPBL collection POS"    ;
+# 	prov:generatedAtTime "2021-02"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C54X54V0T> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096522/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Q Exactive" ;
+#     jlw:has_operator jlw:Arnaud_Gaudry .
+
+# jlw:assay_batch_MASSIVE_MSV000096522_neg a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Analogs Hits HDPBL collection NEG"    ;
+# 	prov:generatedAtTime "2021-02"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C54X54V0T> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096522/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Q Exactive" ;
+#     jlw:has_operator jlw:Arnaud_Gaudry .
+
+# jlw:assay_batch_MASSIVE_MSV000096523_pos a jlw:AssayBatch ;
+#     rdfs:label              "Analogs Hits Wolfrum collection POS"    ;
+# 	prov:generatedAtTime "2021-02"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C5154F16S> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096523/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Q Exactive" ;
+#     jlw:has_operator jlw:Arnaud_Gaudry .
+
+# jlw:assay_batch_MASSIVE_MSV000096523_neg a jlw:AssayBatch ;
+#     rdfs:label              "Analogs Hits Wolfrum collection NEG"    ;
+# 	prov:generatedAtTime "2021-02"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C5154F16S> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096523/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Q Exactive" ;
+#     jlw:has_operator jlw:Arnaud_Gaudry .
+
+# jlw:assay_batch_MASSIVE_MSV000096531_pos a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Olivier Xtra collection POS"    ;
+# 	prov:generatedAtTime "2022-04"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C50863H8C> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096531/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Exploris 120" ;
+#     jlw:has_operator jlw:Olivier_Kirchhoffer .
+
+# jlw:assay_batch_MASSIVE_MSV000096531_neg a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Olivier Xtra collection NEG"    ;
+# 	prov:generatedAtTime "2022-04"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C50863H8C> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096531/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Exploris 120" ;
+#     jlw:has_operator jlw:Olivier_Kirchhoffer .
+
+# jlw:assay_batch_MASSIVE_MSV000096370_pos a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Validated Hits TS collection POS"    ;
+# 	prov:generatedAtTime "2023-05"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C5HX16315> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096370/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Exploris 120" ;
+#     jlw:has_operator jlw:Olivier_Kirchhoffer .
+
+# jlw:assay_batch_MASSIVE_MSV000096370_neg a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Validated Hits TS collection NEG"    ;
+# 	prov:generatedAtTime "2023-05"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C5HX16315> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096370/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Exploris 120" ;
+#     jlw:has_operator jlw:Olivier_Kirchhoffer .
+
+# jlw:assay_batch_MASSIVE_MSV000096365_pos a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Validation List TS collection POS"    ;
+# 	prov:generatedAtTime "2023-04"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C5HX16315> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096365/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Exploris 120" ;
+#     jlw:has_operator jlw:Olivier_Kirchhoffer .
+
+# jlw:assay_batch_MASSIVE_MSV000096365_neg a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of Validation List TS collection NEG"    ;
+# 	prov:generatedAtTime "2023-04"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C5HX16315> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v07/MSV000096365/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Qexactive" ;
+#     jlw:has_operator jlw:Olivier_Kirchhoffer .
+
+# jlw:assay_batch_MASSIVE_MSV000087728_pos a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of PF1600 collection POS"    ;
+# 	prov:generatedAtTime "2017-01"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C59J97> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v03/MSV000087728/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Qexactive" ;
+#     jlw:has_operator jlw:Pierre-Marie_Allard .
+
+# jlw:assay_batch_MASSIVE_MSV000087728_neg a jlw:AssayBatch ;
+#     rdfs:label              "LCMS of PF1600 collection NEG"    ;
+# 	prov:generatedAtTime "2017-01"^^xsd:gYearMonth ;
+#     dcat:accessURL <https://doi.org/10.25345/C59J97> ;
+#     dcat:ftpURL <ftp://massive.ucsd.edu/v03/MSV000087728/> ;
+#     jlw:usedArticle <https://doi.org/10.1021/acscentsci.3c00800> ;
+#     jlw:has_instrument_type "Exploris 120" ;
+#     jlw:has_operator jlw:Pierre-Marie_Allard .
+
+
+#######################################################################
+# Protocols
+#######################################################################
+
+# jlw:usedProtocol and jlw:usedArticle defined in schema.ttl
+# jlw:has_operator and jlw:has_author defined as a subPropertyoOf prov:wasAttributedTo in 
+
+jlw:Protocol a owl:Class ;
+	rdfs:subClassOf prov:Entity ;
+    rdfs:label              "Protocol used in sinergiawolfender"    ;
+    rdfs:comment            "Protocol used in sinergiawolfender"    .
+
+jlw:TSProtocol_20230801 a jlw:Protocol ; # QUESTION: should we simplify and have the url as ID?
+    rdfs:label              "Screening protocol"    ;
+    rdfs:comment            "Lab operations for an infection and broth bioassay"    ;
+	prov:generatedAtTime "2023-08-01"^^xsd:date ;
+	jlw:has_author jlw:Jahn_Nitschke ; # Possibly add Thierry and Nabil
+	rdfs:seeAlso "https://www.sinergiawolfender.org/protected/jlw/protocols/20230801JN_Infection_in_broth_protocol.docx"^^xsd:anyURI .
+	# What other properties?
+
+jlw:TS_thesis_JNitschke a jlw:Protocol ; # QUESTION: should we simplify and have the url as ID?
+    # rdfs:label              "Screening protocol"    ;
+    # rdfs:comment            "Lab operations for an infection and broth bioassay"    ;
+	# prov:generatedAtTime "2023-08-01"^^xsd:date ;
+	jlw:has_author jlw:Jahn_Nitschke ; 
+	rdfs:seeAlso "https://www.sinergiawolfender.org/protected/jlw/data/20240422_NitschkeJahn_PhD_thesis.pdf"^^xsd:anyURI .
+	# What other properties?
+
+jlw:CWProtocol_2022 a jlw:Protocol ;
+    rdfs:label              "Protocol for CW assays"    ;
+    rdfs:comment            "Protocol for CW assays"    ;
+	prov:generatedAtTime "2022-01-01"^^xsd:date ;
+	jlw:has_author jlw:Chunyan_Wu ; 
+	rdfs:seeAlso "https://www.sinergiawolfender.org/protected/jlw/data/Autophagy_LD_staining_method_Wolfrum_lab.docx"^^xsd:anyURI .
+
+jlw:TPHProtocol_2022XXXX a jlw:Protocol ;
+    rdfs:label              "TPH protocol"    ;
+    rdfs:comment            "TPH protocol"    ;
+	prov:generatedAtTime "2022-01-01"^^xsd:date ;
+	jlw:has_author "TODO add who" ;
+	rdfs:seeAlso "https:// ... TODO complete ... /TODO_ADD_FILE_NAME.docx"^^xsd:anyURI . 
+	# TODO put ENPKG paper in bioarchive as ref
+
+#######################################################################
+# Articles
+#######################################################################
+
+jlw:Article a owl:Class ;
+	rdfs:subClassOf prov:Entity ;
+    rdfs:label              "Scientific paper used as a reference"    ;
+    rdfs:comment            "Scientific paper used as a reference"    .
+
+doi:paperResultsSoldati a jlw:Article ;
+    rdfs:label              "Paper results Soldati"    ;
+    rdfs:comment            "Paper results Soldati"    .
+
+<https://doi.org/10.3389/fbinf.2022.842964> a jlw:Article ; 
+    rdfs:label              "doi:10.3389/fbinf.2022.842964"    ;
+    rdfs:comment            "MEMO: Mass Spectrometry-Based Sample Vectorization to Explore Chemodiverse Datasets"    .
+	# add authors and date? 
+
+<https://doi.org/10.3389/fmolb.2022.1028334> a jlw:Article ;
+    rdfs:label              "doi.org/10.3389/fmolb.2022.1028334"    ;
+    rdfs:comment            "Inventa: A computational tool to discover structural novelty in natural extracts libraries"    .
+
+<https://doi.org/10.3389/fmicb.2020.00266> a jlw:Article ;
+    rdfs:label              "doi.org/10.3389/fmicb.2020.00266"    ;
+    rdfs:comment            "Identification of Anti-Mycobacterium and Anti-Legionella Compounds With Potential Distinctive Structural Scaffolds From an HD-PBL Using Phenotypic Screens in Amoebae Host Models"    .
+
+<https://www.frontiersin.org/articles/10.3389/fntpr.2023.1279761> a jlw:Article ;
+    rdfs:label              "10.3389/fntpr.2023.1279761"    ;
+    rdfs:comment            "Targeted isolation of natural analogs of anti-mycobacterial hit compounds based on the metabolite profiling of a large collection of plant extracts"    .
+
+<https://doi.org/10.26434/chemrxiv-2023-sljbt> a jlw:Article ;
+    rdfs:label              "doi.org/10.26434/chemrxiv-2023-sljbt"    ;
+    rdfs:comment            "A Sample-Centric and Knowledge-Driven Computational Framework for Natural Products Drug Discovery"    .
+
+<https://doi.org/10.3389/fonc.2020.602817> a jlw:Article ;
+    rdfs:label              "doi.org/10.3389/fonc.2020.602817"    ;
+    rdfs:comment            "Beyond TNBC: Repositioning of Clofazimine Against a Broad Range of Wnt-Dependent Cancers"    .
+
+# jlw:MEMO_analysis_protocol a jlw:AnalysisProtocol ;
+# 	rdfs:subClassOf skos:Collection ;
+# 	rdfs:label              "MEMO analysis protocol"    ;
+# 	rdfs:comment            "MEMO-MS2 BasEd SaMple VectOrization - a method allowing to cluster large amounts of chemodiverse samples based on their LC-MS/MS profiles in a retention time agnostic manner."    ;
+# 	jlw:has_doi_xref  doi:10.3389\/fbinf.2022.842964       ; 
+# 	jlw:has_pmid_xref pmid:36304329                        .

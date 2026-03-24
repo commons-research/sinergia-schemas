@@ -1,0 +1,1054 @@
+# More about KOS:  https://www.isko.org/cyclo
+# A nice intro: https://solidproject.org/developers/
+
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>   .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#>         .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#>             .
+@prefix owl:     <http://www.w3.org/2002/07/owl#>                .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#>          .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/>                    .
+@prefix wd:      <http://www.wikidata.org/entity/>               .
+@prefix vann:    <http://purl.org/vocab/vann/>                   .
+@prefix dcterms: <http://purl.org/dc/terms/>                     .
+@prefix sdo: 	 <http://schema.org/>                            .
+@prefix orcid:	 <http://orcid.org/>                             .
+@prefix void:	 <http://rdfs.org/ns/void#>                      .
+@prefix prov:    <http://www.w3.org/ns/prov#/>        .
+
+# GraphDB is using the word "context" for is usually called "graph" in SPARQL
+# The idea here is to prefix context/graph name with ctx:
+
+@prefix jlw:     <https://www.sinergiawolfender.org/jlw/>        .
+
+# -------------------------------------------------- #
+# Semantic Versioning 2.0.0
+# https://semver.org
+# https://dgarijo.github.io/Widoco/doc/bestPractices/index-en.html
+# -------------------------------------------------- #
+
+jlw: a owl:Ontology ; 
+	owl:versionIRI jlw:ontology_version\/0.1.0 ; 
+	owl:versionInfo "0.1.0" ;
+	dcterms:description "The RDF vocabulary describing concepts defined in the JLW dataset" ;
+	dcterms:title "The JLW RDF vocabulary" ;
+	dcterms:license <https://creativecommons.org/licenses/by-nc-sa/4.0/> ;
+	dcterms:creator               jlw:Marco_Pagni                        ;
+	dcterms:contributor	
+		jlw:Florence_Mehl ,
+		jlw:Frederic_Burdet ,
+		jlw:Arnaud_Gaudry ;
+	# dcterms:created xsd:dateTime 
+	vann:preferredNamespaceUri "https://www.sinergiawolfender.org/jlw/"  ;
+	vann:preferredNamespacePrefix "jlw"                                  .
+	# foaf:logo
+	# foaf:depiction schema here
+
+# -------------------------------------------------- #
+# PF-related classes and property
+# see also PlantPartScheme in dataset.ttl
+# -------------------------------------------------- #
+
+jlw:PFCode a rdfs:Class ;
+	rdfs:subClassOf jlw:LabSample ;
+    rdfs:label "PF code" ;
+    rdfs:comment "An entry code of the Pierre Fabre (PF) phytothèque. It corresponds to a single batch of plant collection. Different codes may refer to the same plant part and the same species, but in different batches i.e. different collection events." ;
+	skos:example jlw:V100042 .
+
+# -------------------------------------------------- #
+# PF-related plant part scheme
+# -------------------------------------------------- #
+
+# jlw:PlantPartScheme a rdfs:Class ;
+# 	rdfs:subClassOf skos:ConceptScheme ;
+# 	rdfs:label "Plant part scheme"     ;
+# 	rdfs:comment "A hierachical organization of plant parts adapted from the nomenclature found in the Pierre Fabre phytothèque. It is designed to capture most of the original annotations in a not-too-big hierarchy. A few rarely used or ambiguous designations were not taken into account (they are still visible in the comments of PfCode entries). Nota Bene: this scheme includes both plant organs sensu stricto (e.g. 'leaf' or 'flower') and practical categories with no botanical meaning (e.g. 'woody stem')" ;
+# 	skos:hasTopConcept jlw:whole_plant .
+
+jlw:PlantPart a rdfs:Class ;
+    rdfs:label "Plant part" ;
+    rdfs:comment "A plant part, adapted from the original nomenclature of the Pierre Fabre phytothèque. See jlw:PlantPartScheme for more details" .
+
+jlw:is_from_plant_part a rdf:Property ; # FIXME: has_plant_part
+  rdfs:label "is from plant part" ;
+  rdfs:domain jlw:PFCode ; 
+  rdfs:range  jlw:PlantPart .
+
+jlw:is_part_of a rdf:Property ; # FIXME is_part_of_plant_part 
+	rdfs:subPropertyOf skos:broaderMatch ;
+	rdfs:label "is part of plant part" ;
+	rdfs:domain jlw:PlantPart ; 
+	rdfs:range  jlw:PlantPart .
+	
+# -------------------------------------------------- #
+# Simplified taxonomy 
+# -------------------------------------------------- #
+
+jlw:Taxon a rdfs:Class ;
+    rdfs:label "Taxon" ;
+    rdfs:comment "This is a taxon in a simplified taxonomy derived from Open Tree of Life (OTT) 3.3, with a few modifications. This 'local' taxonomy is a balanced tree and therefore contains a few additionnal (i.e. 'unknown') nodes for the sake of balancing lineages. All PF codes are all placed at the 'species' rank. This also has required to remap some infra-specific assignment to the species rank. In addition a few 'Genus sp.' nodes were created for PF codes originally assignement at the genus rank" .
+jlw:OttTaxon a rdfs:Class ;
+	rdfs:subClassOf jlw:Taxon ;
+	rdfs:label "Taxon with an OTT xref" .
+jlw:UnknownTaxon a rdfs:Class ;
+	rdfs:subClassOf jlw:Taxon ;
+    rdfs:label "Placeholder taxon without OTT xref" .
+
+jlw:has_parent_taxon a rdf:Property ;
+	rdfs:subPropertyOf skos:broaderMatch  ;
+	rdfs:label         "has parent taxon" ;
+	rdfs:domain        jlw:Taxon          ;
+	rdfs:range         jlw:Taxon          .
+
+jlw:has_taxon a rdf:Property ;
+	rdfs:label         "has taxon"       ;
+	rdfs:domain        jlw:PFCode        ;
+	rdfs:range         jlw:Taxon         .
+jlw:has_exact_taxon a rdf:Property ;
+	rdfs:subPropertyOf jlw:has_taxon, skos:exactMatch ;
+	rdfs:label         "has exact taxon"              ;
+	rdfs:domain        jlw:PFCode        ;
+	rdfs:range         jlw:Taxon         .
+jlw:has_broad_taxon a rdf:Property ;
+	rdfs:subPropertyOf jlw:has_taxon, skos:broadMatch ;
+	rdfs:label         "has broad taxon"              ;
+	rdfs:domain        jlw:PFCode        ;
+	rdfs:range         jlw:Taxon         .
+jlw:has_narrow_taxon a rdf:Property ;
+	rdfs:subPropertyOf jlw:has_taxon, skos:narrowMatch ;
+	rdfs:label         "has narrow taxon"              ;
+	rdfs:domain        jlw:PFCode        ;
+	rdfs:range         jlw:Taxon         .
+
+# -------------------------------------------------- #
+# Chemical entity classes
+# Nota Bene: Pubchem distinguishes compound from 
+# substance, here we don"t
+# -------------------------------------------------- #
+
+jlw:ChemicalEntity  a rdfs:Class ;
+    skos:exactMatch wd:Q11173       ;
+    rdfs:label  "Chemical compound" ;
+    rdfs:comment "A pure chemical substance consisting of one or more different chemical elements" .
+
+jlw:has_InChI a rdf:Property  ;
+	rdfs:label "has InChI"            ;
+	rdfs:comment "has standard InChI" ;
+	rdfs:domain jlw:ChemicalEntity    ;
+	rdfs:range  xsd:string            .
+
+jlw:has_InChIKey a rdf:Property  ;
+	rdfs:label "has InChIKey"             ;
+	rdfs:comment "has standard InChI key" ;
+	rdfs:domain jlw:ChemicalEntity        ;
+	rdfs:range  xsd:string                .
+
+jlw:has_SMILES_iso a rdf:Property  ;
+	rdfs:label "has isomeric SMILES"             ;
+	rdfs:comment "has isomeric SMILES"           ;
+	rdfs:domain jlw:ChemicalEntity               ;
+	rdfs:range  xsd:string                       .
+
+jlw:has_GNPS_Spectrum a rdf:Property  ;
+	rdfs:label "has GNPS Spectrum"             ;
+	rdfs:comment "has GNPS Spectrum"           ;
+	rdfs:domain jlw:ChemicalEntity               ;
+	rdfs:range  xsd:string                       .
+
+jlw:has_chemical_entity a rdf:Property  ;
+	rdfs:label "has chemical"          ;
+	rdfs:comment "has chemical entity" ;
+	rdfs:domain rdf:Resource           ;
+	rdfs:range  jlw:ChemicalEntity     .
+
+jlw:has_purified_compound a rdf:Property  ;
+	rdfs:label "has purified compound"          ;
+	rdfs:comment "has purified compound" ;
+	rdfs:domain jlw:LabExtract           ; # TODO check if correct
+	rdfs:range  jlw:LabPurifiedCompound     .
+
+# -------------------------------------------------- #
+# Hierarchical classification of lab samples
+# -------------------------------------------------- #
+
+jlw:LabProcess a rdf:Property  ; # FIXME: move it elsewhere
+    rdfs:label "Lab process" ;
+    rdfs:comment "A process carried in the lab that consists in extracting/fractionating a sample to produce another sample" .
+
+jlw:has_purified_sample a rdf:Property ;
+	rdfs:subPropertyOf jlw:LabProcess ;
+	rdfs:label "has purified sample" ;
+	rdfs:comment "has a derived sample in which a molecule is purified";
+	rdfs:domain jlw:LabSample ;
+	rdfs:range jlw:LabSample .
+
+jlw:LabSample  a  rdfs:Class  ;
+    rdfs:label   "Lab sample" ;
+    rdfs:comment "Any physical sample in a specified amount. It could be a raw plant extract, a purified compound, a blank."  .
+
+jlw:LabExtract a rdfs:Class      ;
+	rdfs:subClassOf jlw:LabSample ;
+    rdfs:label   "Lab extract"    ;
+    rdfs:comment "A Physical sample resulting from an extraction procedure" .
+	
+jlw:LabFraction a rdfs:Class     ;
+	rdfs:subClassOf jlw:LabSample ;
+    rdfs:label   "Lab fraction"   ;
+    rdfs:comment "A physical sample resulting from an fractionation procedure" .
+jlw:LabControl a rdfs:Class     ;
+    rdfs:subClassOf jlw:LabSample ;
+    rdfs:label   "Lab control"   ;
+    rdfs:comment "A physical sample used as a blank or QC standard in JLW" .
+	
+jlw:LabPurifiedCompound a rdfs:Class     ; 
+    rdfs:subClassOf jlw:LabSample ;
+    rdfs:label   "Lab purified compound"   ;
+    rdfs:comment "Isolated from one or more samples" .
+
+jlw:LabCompoundOtherOrigin a rdfs:Class     ; 
+    rdfs:subClassOf jlw:LabSample ;
+    rdfs:label   "Lab compond of other origin"   ;
+    rdfs:comment "Purchased / synthesized" .
+
+jlw:lab_ctrl_1 a jlw:LabControl ;    
+    rdfs:label   "Lab control 1" ;
+    rdfs:comment "A sample in well 01 used for a QC standard in JLW lab or for DMSO blank in CW lab" .
+jlw:lab_ctrl_2 a jlw:LabControl ;        
+    rdfs:label   "Lab control 2" ;
+    rdfs:comment "A sample in well 12 used for blank in JLW lab or for tamoxifen control in CW lab" .
+
+# -------------------------------------------------- #
+# Hierarchical classification of bio analyses
+# -------------------------------------------------- #
+
+# jlw:Analysis a rdfs:Class  ;
+#     rdfs:label   "Analysis" ;
+#     rdfs:comment "Analysis" .
+# jlw:BioAnalysis a rdfs:Class                      ;
+#     rdfs:label   "Bio analysis"                    ;
+#     rdfs:comment "An analysis made in the wet lab" ;
+#     rdfs:subClassOf jlw:Analysis ;
+#     skos:broader jlw:Analysis .
+# jlw:InSilicoAnalysis a rdfs:Class  ;  
+#     rdfs:label   "In Silico analysis"               ;
+#     rdfs:comment "An analysis made with a computer" ;
+#     rdfs:subClassOf jlw:Analysis                  ;
+#     skos:broader jlw:Analysis .
+# jlw:SwissTPHBioAssay a rdfs:Class  ;  
+#     rdfs:label   "SwissTPH bio assay result"           ;
+#     rdfs:comment "SwissTPH biological analysis" ;
+#     rdfs:subClassOf jlw:BioAnalysis           ;
+#     skos:broader jlw:BioAnalysis .
+# jlw:CWBioAssay a rdfs:Class  ;  
+#     rdfs:label   "CW lab bio assay result"      ;
+#     rdfs:comment "Cell culture microscopy analysis performed in CW lab"   ;
+#     rdfs:subClassOf jlw:BioAnalysis                                     ;
+#     skos:broader jlw:BioAnalysis .
+# jlw:TSBioAssay a rdfs:Class  ;  
+#     rdfs:label   "TS lab bio assay result"                                ;
+#     rdfs:comment "Anti-TB biological analysis performed in TS lab" ;
+#     rdfs:subClassOf jlw:BioAnalysis                                ;
+#     skos:broader jlw:BioAnalysis .
+# 	
+# jlw:INVENTAAnalysis a       rdfs:Class                  ;  
+#     rdfs:label              "INVENTA analysis"          ;
+#     rdfs:comment            "INVENTA analysis"          ;
+#     rdfs:subClassOf         jlw:InSilicoAnalysis        ;
+#     skos:broader  jlw:InSilicoAnalysis        .
+
+# -------------------------------------------------- #
+# LOTUS
+# -------------------------------------------------- #
+
+jlw:LotusEntry a rdfs:Class ;
+	rdfs:label "LOTUS entry" ;
+	rdfs:comment "An entry with organism-chemical-citation from LOTUS " .
+
+jlw:lotus_reports_chemical a rdf:Property ;
+	rdfs:label "LOTUS reports chemical" ;
+	rdfs:domain jlw:LotusEntry     ;
+	rdfs:range  jlw:ChemicalEntity .
+	
+jlw:lotus_reports_citation a rdf:Property;
+	rdfs:label "LOTUS reports citation"  ;
+	rdfs:domain jlw:LotusEntry           ;
+	rdfs:range  jlw:WikidataCitationXRef .
+
+jlw:lotus_reports_taxon  a rdf:Property;
+	rdfs:label "LOTUS reports taxon" ;
+	rdfs:domain jlw:LotusEntry       ;
+	rdfs:range  jlw:OttTaxon         .
+
+# -------------------------------------------------- #
+# MZMINE
+# -------------------------------------------------- #
+
+jlw:MZmineChromatogram a rdfs:Class ;
+	rdfs:label   "MZMine chromatogram"                      ;
+    rdfs:comment "A chromatogram after alignment by MZMine" .
+
+jlw:MZmineFeature a rdfs:Class ;
+    rdfs:label   "A MZMine feature"                     ;
+    rdfs:comment "A spectral feature aligned by MZMine" .
+
+jlw:MZMinePeak a  rdfs:Class ;
+    rdfs:label   "A MZMine peak" ;
+    rdfs:comment  "A chromatogram peak after alignment by MZMine" .
+
+jlw:SinwolfImgXRef a rdfs:Class ;
+	rdfs:label   "helper image xref" ;
+	rdfs:comment "helper image xref" .
+
+jlw:USIImgXRef a rdfs:Class ;
+    rdfs:label    "USI image xref" ;
+     rdfs:comment "USI image xref" .
+
+jlw:has_MZmine_chromatogram a rdf:Property ;
+	rdfs:label "has MZmine chromatogram" ;
+	rdfs:domain jlw:LabSample            ;
+    rdfs:range  jlw:MZmineChromatogram   .
+
+jlw:has_MZmine_MZ a rdf:Property ;
+    rdfs:label "has MZmine M/Z"   ;
+    rdfs:domain jlw:MZmineFeature ;   
+	rdfs:range  xsd:double        .
+
+jlw:has_MZmine_RT a rdf:Property ;
+    rdfs:label "has MZmine M/Z"   ;
+    rdfs:domain jlw:MZmineFeature ;   
+    rdfs:range  xsd:double        .
+
+jlw:has_MZmine_feature_STRONG a rdf:Property ;
+    rdfs:label "has MZMine strong feature"   ;
+	rdfs:domain jlw:MZmineChromatogram       ;
+	rdfs:range  jlw:MZMineFeature            .
+
+jlw:has_MZmine_feature_WEAK a rdf:Property ;
+    rdfs:label "has MZMine weak feature" ;
+	rdfs:comment "Strong and weak sets of features are disjoint" ;
+    rdfs:domain jlw:MZmineChromatogram   ;
+    rdfs:range  jlw:MZMineFeature        .
+
+jlw:has_MZmine_peak a rdf:Property ;
+    rdfs:label "has MZMine strong feature" ;
+    rdfs:domain jlw:MZmineChromatogram     ;
+    rdfs:range  jlw:MZMinePeak             .
+
+jlw:has_MZMine_area a rdf:Property ;
+    rdfs:label "has MZMine strong feature" ;
+    rdfs:domain jlw:MZminePeak             ;
+	rdfs:range  xsd:double                 .
+
+jlw:has_MZMine_feature a rdf:Property ;
+    rdfs:label "has MZMine strong feature" ;
+    rdfs:domain jlw:MZminePeak             ;
+    rdfs:range  jlw:MZMineFeature          .
+
+# -------------------------------------------------- #
+# Assay results
+# -------------------------------------------------- #
+
+jlw:AssayResult a rdfs:Class ;
+	rdfs:label   "Assay result" ;
+	rdfs:comment "Assay result." .
+	
+jlw:TSAssayResult a rdfs:Class ;
+	rdfs:subClassOf jlw:AssayResult          ;
+	rdfs:label   "Assay result from TS lab"  ;
+	rdfs:comment "Assay result from TS lab." .
+
+jlw:VKAssayResult a rdfs:Class ;
+	rdfs:subClassOf jlw:AssayResult          ;
+	rdfs:label   "Assay result from VK lab"  ;
+	rdfs:comment "Assay result from VK lab." .
+
+jlw:CTAssayResult a rdfs:Class ;
+	rdfs:subClassOf jlw:AssayResult          ;
+	rdfs:label   "Assay result from CT lab"  ;
+	rdfs:comment "Assay result from CT lab." .
+
+jlw:CWAssayResult a rdfs:Class ;
+	rdfs:subClassOf jlw:AssayResult          ;
+	rdfs:label   "Assay result from CW lab"  ;
+	rdfs:comment "Assay result from CW lab." .
+
+jlw:TPHAssayResult a rdfs:Class ;
+	rdfs:subClassOf jlw:AssayResult          ;
+	rdfs:label   "Assay result from TPH lab"  ;
+	rdfs:comment "Assay result from Swiss TPH lab." .
+
+jlw:INVENTAAssayResult a rdfs:Class ;
+	rdfs:subClassOf jlw:AssayResult                    ;
+	rdfs:label   "Assay result from INVENTA protocol"  ;
+	rdfs:comment "Assay result from INVENTA protocol." .
+
+jlw:MEMOAssayResult a rdfs:Class ;
+	rdfs:subClassOf jlw:AssayResult                 ;
+	rdfs:label   "Assay result from MEMO protocol"  ;
+	rdfs:comment "Assay result from MEMO protocol." .
+
+# -------------------------------------------------- #
+# has_assay_result properties
+# -------------------------------------------------- #
+
+jlw:has_assay_result a rdf:Property ;
+    rdfs:label "has assay result" ;
+	rdfs:domain        jlw:LabSample        ;
+	rdfs:range         jlw:AssayResult   .
+
+jlw:has_bio_assay_result a rdf:Property ;
+    rdfs:subPropertyOf jlw:has_assay_result ;
+    rdfs:label "has bio assay result" ;
+	rdfs:domain        jlw:LabSample        ;
+	rdfs:range         jlw:AssayResult   .
+
+jlw:has_chemo_assay_result a rdf:Property ;
+    rdfs:subPropertyOf jlw:has_assay_result ;
+    rdfs:label "has chemo assay result" ;
+	rdfs:domain        jlw:LabSample        ;
+	rdfs:range         jlw:AssayResult   .
+
+jlw:has_insilico_assay_result a rdf:Property ;
+    rdfs:subPropertyOf jlw:has_assay_result  ;
+    rdfs:label "has in-silico assay result"  ;
+	rdfs:domain        jlw:LabSample        ;
+	rdfs:range         jlw:AssayResult   .
+
+jlw:has_CW_bio_assay_result a rdf:Property ;
+    rdfs:subPropertyOf jlw:has_bio_assay_result    ;
+    rdfs:label "has CW bio assay result"           ;
+	rdfs:domain        jlw:LabSample        ;
+	rdfs:range         jlw:CWAssayResult .
+	
+jlw:has_TS_bio_assay_result a rdf:Property ;
+    rdfs:subPropertyOf jlw:has_bio_assay_result    ;
+    rdfs:label "has TS bio assay result"           ;
+	rdfs:domain        jlw:LabSample        ;
+	rdfs:range         jlw:TSAssayResult .
+
+jlw:has_VK_bio_assay_result a rdf:Property ;
+    rdfs:subPropertyOf jlw:has_bio_assay_result    ;
+    rdfs:label "has VK bio assay result"           ;
+	rdfs:domain        jlw:LabSample        ;
+	rdfs:range         jlw:VKAssayResult .
+
+jlw:has_CT_bio_assay_result a rdf:Property ;
+    rdfs:subPropertyOf jlw:has_bio_assay_result    ;
+    rdfs:label "has CT bio assay result"           ;
+	rdfs:domain        jlw:LabSample        ;
+	rdfs:range         jlw:OHAssayResult .
+
+jlw:has_INVENTA_insilico_assay_result a rdf:Property          ;
+    rdfs:subPropertyOf jlw:has_insilico_assay_result    ;
+    rdfs:label "has INVENTA in-silico assay result"     ;
+	rdfs:domain        jlw:LabSample             ;
+	rdfs:range         jlw:INVENTAAssayResult .
+
+jlw:has_SwissTPH_bioassay_result a rdf:Property     ;
+    rdfs:subPropertyOf jlw:has_bio_assay_result ;
+    rdfs:label "has TPH bio assay result"            ;	
+	rdfs:domain        jlw:LabSample          ;
+	rdfs:range         jlw:TPHAssayResult  .
+
+# -------------------------------------------------- #
+# Cross-references classes. These are used to qualify 
+# documents on external servers.
+# -------------------------------------------------- #
+
+jlw:XRef a rdfs:Class ;
+    rdfs:label "Cross reference" ;
+    rdfs:comment "A cross reference that point to an external resource" .
+
+#jlw:IdXRef rdfs:subClassOf jlw:XRef ;
+#    rdfs:label "External identifier" ;
+#    rdfs:comment "A RDF identifier on an external server" . 
+jlw:ImgXRef a rdfs:Class  ;  
+	rdfs:subClassOf jlw:XRef ;
+    skos:related foaf:Image ;
+    rdf:label "External image" ;
+    rdfs:comment "A link to an image on an external server" .
+
+jlw:DocXRef a rdfs:Class  ;  
+	rdfs:subClassOf jlw:XRef ;
+    rdf:label "External document" ;
+    rdfs:comment "A link to a browsable document on an external server (disjoint from jlw:IdXRef and jlw:ImgXRef)" .
+
+jlw:OTTDocXRef a rdfs:Class  ;  
+	rdfs:subClassOf jlw:DocXRef ;
+    rdfs:label "OTT XRef" ;
+    rdfs:comment "A cross reference to an Open Tree of Life identifier" .
+
+jlw:WikidataTaxoXRef a rdfs:Class  ;  
+	rdfs:subClassOf jlw:WikidataXRef ;
+    rdfs:label "WD taxo xref" ;
+    rdfs:comment "A cross reference to a taxon in wikidata" .
+
+jlw:WikidataCitationXRef a rdfs:Class ;  
+	rdfs:subClassOf jlw:WikidataXRef ;
+    rdfs:label "WD citation xref" ;
+    rdfs:comment "A cross reference to a citation in wikidata" .
+
+jlw:USIImgXRef a rdfs:Class  ;  
+	rdfs:subClassOf jlw:ImgXRef ;
+    rdf:label "Image from metabolomics-usi" ;
+    rdfs:comment "An image from metabolomics-usi.ucsd.edu".
+
+jlw:WDImgXRef a rdfs:Class  ;  
+	rdfs:subClassOf jlw:ImgXRef ;
+    rdf:label "Image from WD" ;
+    rdfs:comment "An image from www.wikidata.org" .
+
+jlw:SinwolfImgXRef a rdfs:Class  ;  
+	rdfs:subClassOf jlw:ImgXRef ;
+    rdf:label "Image from or through sinwolf" ;
+    rdfs:comment "An image from www.singergiawolfender.org, directly or as a proxy".
+
+# -------------------------------------------------- #
+# Predicates for cross references
+# -------------------------------------------------- #
+
+jlw:has_xref a rdf:Property ;
+	rdfs:label "has xref"                    ;
+	rdfs:comment "has a cross-reference in an external resource" .
+
+jlw:has_ott_xref           a rdf:Property ;
+	rdfs:subPropertyOf jlw:has_xref ;
+	.
+jlw:has_exact_ott_xref     a rdf:Property ;
+	rdfs:subPropertyOf jlw:has_ott_xref , skos:exactMatch .
+jlw:has_broad_ott_xref     a rdf:Property ;
+	rdfs:subPropertyOf jlw:has_ott_xref , skos:broadMatch .
+jlw:has_narrow_ott_xref    a rdf:Property ;
+	rdfs:subPropertyOf jlw:has_ott_xref , skos:narrowMatch .
+
+jlw:has_wd_xref           a rdf:Property ;
+	rdfs:subPropertyOf jlw:has_xref             ;
+	rdfs:label "has WD xref"                    ;
+	rdfs:comment "has WikiData cross-reference" .
+
+jlw:has_wd_chem_xref  a rdf:Property ;
+	rdfs:subPropertyOf jlw:has_wd_xref                   ;
+	rdfs:label "has WD chem xref"                        ;
+	rdfs:comment "has WikiData chemical cross-reference" ;
+	rdfs:domain jlw:ChemicalEntity                       .
+
+jlw:has_doc_xref a rdf:Property ;
+	rdfs:subPropertyOf jlw:has_xref ;
+	rdfs:label "has doc xref"                        ;
+	rdfs:comment "has doc xref" .
+
+jlw:usedProtocol a rdf:Property ;
+	rdfs:subPropertyOf prov:used ;
+	rdfs:label "protocol used by assay batch" ; 
+	rdfs:comment "protocol used by assay batch" ;
+	rdfs:domain jlw:AssayBatch ; 
+	rdfs:range jlw:Protocol .
+
+jlw:usedArticle a rdf:Property ;
+	rdfs:subPropertyOf prov:used ;
+	rdfs:label "article used by assay batch" ;
+	rdfs:comment "article used by assay batch" ;
+	rdfs:domain jlw:AssayBatch ; 
+	rdfs:range jlw:Article .
+
+jlw:has_operator a rdf:Property ;
+	rdfs:subPropertyOf prov:wasAttributedTo ;
+	rdfs:label "operator of an assay batch" ;
+	rdfs:comment "operator of an assay batch" ;
+	rdfs:domain jlw:AssayBatch ; 
+	rdfs:range foaf:Person . # should we switch to prov:agent ?
+
+jlw:has_author a rdf:Property ;
+	rdfs:subPropertyOf prov:wasAttributedTo ;
+	rdfs:label "protocol or article written by operator" ;
+	rdfs:comment "protocol or article written by operator" ;
+	rdfs:domain jlw:Protocol, jlw:Article ; 
+	rdfs:range foaf:Person . # should we switch to prov:agent ?
+
+# -------------------------------------------------- #
+#
+# -------------------------------------------------- #
+
+# -------------------------------------------------- #
+# A couple of data types for RDF-star entries
+# -------------------------------------------------- #
+
+#jlw:LabSamplePair a rdfs:Class  ;  
+#    rdfs:label   "Pair of lab samples" ;
+#    rdfs:comment "A pair of lab sample" .
+
+# -------------------------------------------------- #
+# A collection of samples
+# -------------------------------------------------- #
+
+# jlw:SampleCollection a rdfs:Class ;
+#    rdfs:subClassOf skos:Collection ;
+#	rdfs:label "A collection of samples" ;
+#	rdfs:comment "A set of experimental samples that were grouped together because they participate to the same experiment." ;
+#    skos:example jlw:chemo_diverse_sample_collection .
+
+jlw:is_part_of_experiment a rdf:Property ;
+    rdfs:subPropertyOf skos:members;
+    rdfs:label "is part of experiment" ;
+    rdfs:comment "Lab samples are grouped into one or several experiments." ;
+    rdfs:domain jlw:LabExtract ;
+    rdfs:range jlw:SampleCollection .
+
+# -------------------------------------------------- #
+# A collection of PF codes
+# -------------------------------------------------- #
+
+# jlw:is_part_of_collection a rdf:Property ;
+#     rdfs:subPropertyOf skos:members;
+#     rdfs:label "is part of PF code collection" ;
+#     rdfs:comment "PFCodes are grouped into one or several collections." ;
+#     rdfs:domain jlw:PFCode ;
+#     rdfs:range skos:Collection .
+
+jlw:is_part_of_PFcode_collection a rdf:Property ;
+    rdfs:subPropertyOf skos:members;
+    rdfs:label "is part of PF code collection" ;
+    rdfs:comment "PFCodes are grouped into one or several collections." ;
+    rdfs:domain jlw:PFCode ;
+    rdfs:range jlw:PFCodeCollection .
+
+# -------------------------------------------------- #
+# A collection of PFcodes
+# -------------------------------------------------- #
+
+jlw:PFCodeCollection a rdfs:Class ;
+    rdfs:subClassOf skos:Collection ;
+	rdfs:label "Collection of PF codes" ;
+	rdfs:comment "A set of PF codes that were grouped together because they participate to the same analysis." ;
+    skos:example jlw:chemo_diverse_PFcode_collection .
+	
+# -------------------------------------------------- #
+# Object  properties
+# -------------------------------------------------- #
+
+jlw:has_lab_process a jlw:LabProcess ; # FIXME
+	rdfs:label "has lab process" ;
+	rdfs:comment "has any lab process, which could be specified as a sub-property." ;
+    rdfs:domain jlw:LabSample ;
+    rdfs:range  jlw:LabSample .
+	
+jlw:has_wikidata_taxo_xref a rdf:property ;
+	rdfs:label  "has wikidata taxo xref"  ;
+	rdfs:domain jlw:OttTaxon         ;
+	rdfs:range  jlw:WikidataTaxoXRef .
+
+# -------------------------------------------------- #
+# Data properties
+# -------------------------------------------------- #
+	
+jlw:has_stock_quantity a rdf:property ;
+	rdfs:label  "has stock quantity" ;
+	rdfs:domain jlw:LabSample;
+	rdfs:range  xsd:double .
+	
+jlw:lab_book_initals a rdf:property ;
+	rdfs:label  "has lab book initals" ;
+	rdfs:domain jlw:LabSample ;
+	rdfs:range  xsd:string    .
+
+jlw:has_rank a rdf:property ;
+	rdfs:label  "has rank" ;
+	rdfs:domain jlw:PlantPart ;
+	rdfs:range  xsd:string    .
+
+jlw:has_tube_quantity a rdf:property ;
+	rdfs:label  "has tube quantity" ;
+	rdfs:domain jlw:LabSample ;
+	rdfs:range  xsd:double.
+
+jlw:is_part_of_selection_round a rdf:property ;
+	rdfs:label  "is part of selection round" ;
+	rdfs:domain jlw:LabExtract ;
+	rdfs:range  xsd:string     .
+
+jlw:has_operator a rdf:property ;
+	rdfs:label  "has operator" ;
+	rdfs:domain jlw:LabSample  ;
+	rdfs:range  xsd:string     .
+	
+jlw:has_process_type a rdf:property ;
+	rdfs:label  "has process type" ;
+	rdfs:domain jlw:LabSample ;
+	rdfs:range  xsd:string    .
+
+jlw:has_solvent a rdf:property ;
+	rdfs:label  "has solvent" ;
+	rdfs:domain jlw:LabSample ;
+	rdfs:range  xsd:string    .
+	
+jlw:has_in_cellulo_exp_id a rdf:property ;
+	rdfs:label  "has in cellulo_exp_id" ;
+	rdfs:domain jlw:TSAssayResult    ;
+	rdfs:range  xsd:string              .
+	
+jlw:has_in_vitro_exp_id a rdf:property ;
+	rdfs:label  "has in vitro exp id" ;
+	rdfs:domain jlw:TSAssayResult  ;
+	rdfs:range  xsd:string            .
+	
+jlw:has_putative_interpretation a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has putative interpretation" ;
+	rdfs:domain jlw:TSAssayResult          ;
+	rdfs:range  xsd:string                    .
+
+jlw:has_remaining_growth_dd_in_infection a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has remaining growth dd in infection" ;
+	rdfs:domain jlw:TSAssayResult                 ;
+	rdfs:range  xsd:double                           .
+
+jlw:has_remaining_growth_dd_in_infection_sd a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has remaining growth dd in infection sd" ;
+	rdfs:domain jlw:TSAssayResult                 ;
+	rdfs:range  xsd:double                           .
+
+jlw:has_remaining_growth_mm_in_broth a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has remaining growth mm in broth" ;
+	rdfs:domain jlw:TSAssayResult                 ;
+	rdfs:range  xsd:double                           .
+
+jlw:has_remaining_growth_mm_in_broth_sd a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has remaining growth mm in broth sd" ;
+	rdfs:domain jlw:TSAssayResult                 ;
+	rdfs:range  xsd:double                           .
+
+jlw:has_remaining_growth_mm_in_infection a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has remaining growth mm in infection" ;
+	rdfs:domain jlw:TSAssayResult                 ;
+	rdfs:range  xsd:double                           .
+
+jlw:has_remaining_growth_mm_in_infection_sd a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has remaining growth mm in infection sd" ;
+	rdfs:domain jlw:TSAssayResult                 ;
+	rdfs:range  xsd:double                           .
+
+jlw:has_TPH_L_donovani_10ug_ml a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has TPH L donovani 10 ug/nl" ;
+	rdfs:domain jlw:TPHAssayResult                 ;
+	rdfs:range  xsd:decimal                        .
+
+jlw:has_Wnt_cytotoxic_effect a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "Has Wnt cytotoxic effect" ;
+	rdfs:domain jlw:CTAssayResult                 ;
+	rdfs:range  xsd:decimal                           .
+
+jlw:has_Dd_in_infection_IC50 a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "Has Dd IC50" ;
+	rdfs:domain jlw:TSAssayResult                 ;
+	rdfs:range  xsd:decimal                           .
+
+jlw:has_Mm_in_infection_IC50 a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "Has Mm IC50 in infection" ;
+	rdfs:domain jlw:TSAssayResult                 ;
+	rdfs:range  xsd:decimal                           .
+
+jlw:has_Mm_in_broth_IC50 a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "Has Mm IC50 in broth" ;
+	rdfs:domain jlw:TSAssayResult                 ;
+	rdfs:range  xsd:decimal                           .
+
+jlw:has_RSV_effect a rdf:Property ; #active, non-active
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has RSV Inhibitory effect"                      ;
+	rdfs:comment "Percentage of infected cells in reference to the control on A549 cells, 50 ug ml extract "	;
+	rdfs:domain jlw:CTAssayResult    ;
+	rdfs:range  xsd:double              .
+
+jlw:has_RSV_effect_cat a rdf:Property ; #active, non-active
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has RSV Inhibitory effect"                      ;
+	rdfs:comment "Percentage of infected cells in reference to the control on A549 cells, 50 ug ml extract "	;
+	rdfs:domain jlw:CTAssayResult    ;
+	rdfs:range  xsd:string              .
+
+jlw:has_RSV_cytotoxic_effect_cat a rdf:Property ; # toxic, non-toxic
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has RSV Cytotoxicity on A549 cells"                      ;
+	rdfs:comment "Resazurine Percentage of cell viability in reference to the control on A549 cells, 50 ug ml extract "	;  
+	rdfs:domain jlw:CTAssayResult    ;
+	rdfs:range  xsd:string .   
+
+jlw:has_RSV_cytotoxic_effect a rdf:Property ; 
+	rdfs:subPropertyOf jlw:has_RSV_effect	 ;
+	rdfs:label  "has RSV Cytotoxicity on A549 cells"                      ;
+	rdfs:comment "Resazurine Percentage of cell viability in reference to the control on A549 cells, 50 ug ml extract "	;
+	rdfs:domain jlw:CTAssayResult    ;
+	rdfs:range  xsd:double            .
+
+jlw:has_RSV_toxicity a rdf:Property ; 
+	rdfs:subPropertyOf jlw:has_RSV_effect	 ;
+	rdfs:label  "has RSV toxicity"                      ;
+	rdfs:comment ""	; # Luis please comment
+	rdfs:domain jlw:CTAssayResult    ;
+	rdfs:range  xsd:double            .
+
+jlw:has_Wnt_effect_cat a rdf:Property ; #active, non-active
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has Wnt Activatory effect"                      ;
+	rdfs:comment "IC50 Wnt regulation on BT-20 TNBC"	;
+	rdfs:domain jlw:VKAssayResult    ;
+	rdfs:range  xsd:string              .
+
+jlw:has_Wnt_effect a rdf:Property ; 
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has Wnt Activatory effect"                      ;
+	rdfs:comment "IC50 Wnt regulation on BT-20 TNBC"	;
+	rdfs:domain jlw:VKAssayResult    ;
+	rdfs:range  xsd:double              .
+
+jlw:has_Wnt_activatory_effect a rdf:Property ;
+	rdfs:subPropertyOf jlw:has_Wnt_effect    ;
+	rdfs:label  "has Wnt Activatory effect"                      ;
+	rdfs:comment "IC50 Wnt activation on BT-20 TNBC"	;
+	rdfs:domain jlw:VKAssayResult    ;
+	rdfs:range  xsd:double              .
+
+jlw:has_Wnt_inhibitory_effect a rdf:Property ;
+	rdfs:subPropertyOf jlw:has_Wnt_effect	 ;
+	rdfs:label  "has Wnt Inhibitory effect"                      ;
+	rdfs:comment "IC50 Wnt inhibition on BT-20 TNBC"	;
+	rdfs:domain jlw:VKAssayResult    ;
+	rdfs:range  xsd:double              .
+
+jlw:has_Wnt_upstream_inhibitory_effect a rdf:Property ;
+	rdfs:subPropertyOf jlw:has_Wnt_inhibitory_effect	 ;
+	rdfs:label  "has Wnt Inhibitory upstream-regulated effect"                      ;
+	rdfs:comment "IC50 Wnt upstream inhibition on BT-20 TNBC"	;
+	rdfs:domain jlw:VKAssayResult    ;
+	rdfs:range  xsd:double              .
+
+jlw:has_Wnt_downstream_inhibitory_effect a rdf:Property ;
+	rdfs:subPropertyOf jlw:has_Wnt_inhibitory_effect	 ;
+	rdfs:label  "has Wnt Inhibitory downstream-regulated effect"                      ;
+	rdfs:comment "IC50 Wnt downstream inhibition on BT-20 TNBC"	;
+	rdfs:domain jlw:VKAssayResult    ;
+	rdfs:range  xsd:double              .
+
+jlw:has_Wnt_cytotoxic_effect_cat a rdf:Property ; # toxic, non-toxic
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has Wnt Cytotoxicity"                      ;
+	rdfs:comment "MTT IC50 of BT-20 TNBC cell viability"	;
+	rdfs:domain jlw:VKAssayResult    ;
+	rdfs:range  xsd:string .   
+
+jlw:has_Wnt_cytotoxic_effect a rdf:Property ;
+	rdfs:subPropertyOf jlw:has_Wnt_cytotoxic_effect	 ;
+	rdfs:label  "has a Wnt Cytotoxicity"                      ;
+	rdfs:comment "MTT IC50 of BT-20 TNBC cell viability"	;
+	rdfs:domain jlw:VKAssayResult    ;
+	rdfs:range  xsd:double            .
+
+# jlw:has_remaining_growth_in_cellulo_dd a rdf:property ;
+# 	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+# 	rdfs:label  "has remaining growth in cellulo Dd" ;
+# 	rdfs:domain jlw:TSAssayResult                 ;
+# 	rdfs:range  xsd:double                           .
+	
+# jlw:has_remaining_growth_in_cellulo_mm a rdf:property ;
+# 	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+# 	rdfs:label  "has remaining growth in cellulo Mm" ;
+# 	rdfs:domain jlw:TSAssayResult                 ;
+# 	rdfs:range  xsd:double                           .
+	
+# jlw:has_remaining_growth_in_vitro_mm a rdf:property ;
+# 	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+# 	rdfs:label  "has remaining growth in vitro mm" ;
+# 	rdfs:domain jlw:TSAssayResult               ;
+# 	rdfs:range  xsd:double                         .
+	
+jlw:has_MEMO_score a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has MEMO score"  ;
+	rdfs:domain jlw:LabSamplePair ;
+	rdfs:range xsd:double         .
+	
+jlw:has_taxo_rank a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has taxo rank" ;
+	rdfs:domain jlw:Taxon       ;
+	rdfs:range  xsd:string      .
+
+jlw:has_TPH_Cytotoxicity_10ug_ml a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has TPH Cytotoxicity 10ug ml" ;
+	rdfs:comment "Percent growth inhibition rat skeletal myoblasts, 10 ug ml extract" ;
+	rdfs:domain jlw:TPHAssayResult             ;
+	rdfs:range  xsd:double                     .
+	
+jlw:has_TPH_L_donovani_10ug_ml a rdf:property ;
+	rdfs:label  "has TPH L donovani 10ug ml" ;
+	rdfs:comment "Percent growth inhibition Leishmania donovani, 10 ug ml extract" ;
+	rdfs:domain jlw:TPHAssayResult           ;
+	rdfs:range  xsd:double                   .
+
+jlw:has_TPH_L_donovani_2ug_ml a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has TPH L donovani 2ug ml" ;
+	rdfs:comment "Percent growth inhibition Leishmania donovani, 2 ug ml extract" ;
+	rdfs:domain jlw:TPHAssayResult          ;
+	rdfs:range  xsd:double                  .
+	
+jlw:has_TPH_T_b_rhodesiense_10ug_ml a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has TPH T b rhodesiense 10ug ml" ;
+	rdfs:comment "Percent growth inhibition Trypanosoma rhodesiense, 10 ug ml extract" ;
+	rdfs:domain jlw:TPHAssayResult               ;
+	rdfs:range  xsd:double                       .
+	
+jlw:has_TPH_T_b_rhodesiense_2ug_ml a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has TPH T b rhodesiense 2ug ml" ;
+	rdfs:comment "Percent growth inhibition Trypanosoma rhodesiense, 2 ug ml extract" ;
+	rdfs:domain jlw:TPHAssayResult               ;
+	rdfs:range  xsd:double                       .
+	
+jlw:has_TPH_T_cruzi_10ug_ml a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has TPH T cruzi 10ug ml" ;
+	rdfs:comment "Percent growth inhibition Trypanosoma cruzi, 10 ug ml extract" ;
+	rdfs:domain jlw:TPHAssayResult        ;
+	rdfs:range  xsd:double                .
+	
+jlw:has_LD_area a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has LD area"      ;
+	rdfs:domain jlw:CWAssayResult ;
+	rdfs:range  xsd:double         .
+	
+jlw:has_LD_intensity a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has LD intensity" ;
+	rdfs:domain jlw:CWAssayResult ;
+	rdfs:range  xsd:double         .
+	
+jlw:has_PI_staining a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has PI staining"  ;
+	rdfs:domain jlw:CWAssayResult ;
+	rdfs:range  xsd:double         .
+	
+jlw:has_autophagy a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has autophagy"    ;
+	rdfs:domain jlw:CWAssayResult ;
+	rdfs:range  xsd:double         .
+	
+jlw:has_cell_number a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has cell number"  ;
+	rdfs:domain jlw:CWAssayResult ;
+	rdfs:range  xsd:double         .
+	
+jlw:has_microscopic_observation a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has microscopic observation" ;
+	rdfs:domain jlw:CWAssayResult          ;
+	rdfs:range  xsd:string                    .
+	
+jlw:has_INVENTA_FC_ratio a rdf:property              ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has INVENTA FC ratio"               ;
+	rdfs:domain jlw:INVENTAAssayResult            ;
+	rdfs:range  xsd:double                           .  
+
+jlw:has_INVENTA_FS_Specificity_ratio a rdf:property  ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has INVENTA Specificity ratio"      ;
+	rdfs:domain jlw:INVENTAAssayResult            ;
+	rdfs:range  xsd:double                           .
+
+jlw:has_INVENTA_AC_ratio a rdf:property              ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has INVENTA AC ratio"               ;
+	rdfs:domain jlw:INVENTAAssayResult            ;
+	rdfs:range  xsd:double                           .  
+
+
+jlw:has_INVENTA_LC_ratio a rdf:property              ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has INVENTA LC ratio"               ;
+	rdfs:domain jlw:INVENTAAssayResult            ;
+	rdfs:range  xsd:double                           .
+
+jlw:has_INVENTA_CC_ratio a rdf:property              ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has INVENTA CC ratio"               ;
+	rdfs:domain jlw:INVENTAAssayResult            ;
+	rdfs:range  xsd:double                           .
+
+jlw:has_INVENTA_SC_ratio a rdf:property              ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has INVENTA SC ratio"               ;
+	rdfs:domain jlw:INVENTAAssayResult            ;
+	rdfs:range  xsd:double                           .
+
+jlw:has_INVENTA_Priority_Score_PS a rdf:property     ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has INVENTA PS Priority score"      ;
+	rdfs:domain jlw:INVENTAAssayResult            ;
+	rdfs:range  xsd:double                           .
+
+jlw:has_INVENTA_reported_comp_family a rdf:property  ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has INVENTA reported compounds in family"   ;
+	rdfs:domain jlw:INVENTAAssayResult            ;
+	rdfs:range  xsd:integer                          .
+	
+jlw:has_INVENTA_reported_comp_genus a rdf:property   ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has INVENTA reported compounds in genus"    ;
+	rdfs:domain jlw:INVENTAAssayResult            ;
+	rdfs:range  xsd:integer                          .
+	
+jlw:has_INVENTA_reported_comp_species a rdf:property ;
+	rdfs:subPropertyOf jlw:has_assay_result_value	 ;
+	rdfs:label  "has INVENTA reported compounds in species"  ;
+	rdfs:domain jlw:INVENTAAssayResult            ;
+	rdfs:range  xsd:integer                          .
+
+jlw:in_assay_result_batch a rdf:property ;
+	rdfs:subPropertyOf skos:member           ;
+	rdfs:label  "belongs to an assay batch" ;
+	rdfs:domain jlw:AssayResult           ;
+	rdfs:range  jlw:AssayBatch              .
+
+jlw:has_obtained_quantity a rdf:Property ;
+    rdfs:label "Obtained quantity"       ;                 
+    rdfs:comment "Obtained quantity [g]" ;           
+    rdfs:domain jlw:LabSample            ;
+	rdfs:range  xsd:double               .
+
+jlw:has_process_yield a rdf:Property ;
+    rdfs:label "Process yield"       ;
+    rdfs:comment "Process yield [%]" ;           
+    rdfs:domain jlw:LabSample        ;
+    rdfs:range  xsd:double           .
+
+jlw:has_stock_quantity a rdf:Property ;              
+    rdfs:label   "Stock quantity"     ;                    
+    rdfs:comment "Stock quantity [g]" ;           
+    rdfs:domain  jlw:LabSample        ;
+    rdfs:range   xsd:double           .
+
+jlw:has_chemical_entity a rdf:Property ;
+    rdfs:label   "Has chemical entity"     ;                    
+    rdfs:comment "Physical chemical coming from a fraction" ;           
+    rdfs:domain  jlw:LabSample             ;
+    rdfs:range   jlw:ChemicalEntity        .
+
+
